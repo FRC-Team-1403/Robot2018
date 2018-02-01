@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class dtSturn90 extends Command {
 
-	boolean direction;
+	String side;
 	
-    public dtSturn90(boolean direction) {
+    public dtSturn90(String side) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.drivetrain);
-        this.direction = direction;
+        this.side = side;
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +25,7 @@ public class dtSturn90 extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (direction) {Robot.drivetrain.setLeftRightPower(0, 0.4); }
+    	if (side.equals("Right") || side.equals("right") || side.equals("R") || side.equals("r")) {Robot.drivetrain.setLeftRightPower(0, 0.4); }
     	else {Robot.drivetrain.setLeftRightPower(0.4, 0); }
     }
 

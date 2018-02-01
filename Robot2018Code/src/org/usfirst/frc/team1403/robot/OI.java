@@ -39,8 +39,8 @@ public class OI {
 
 	public OI() {
 		
-		lbOjoy.whenPressed(new mpManipulate(true, ojoy.getRawAxis(2)));
-		rbOjoy.whenPressed(new mpManipulate(false, ojoy.getRawAxis(3)));
+		lbOjoy.whenPressed(new mpManipulate("Intake", ojoy.getRawAxis(2)));
+		rbOjoy.whenPressed(new mpManipulate("Eject", ojoy.getRawAxis(3)));
 		
 		aOjoy.whenPressed(new elMove(1));
 		bOjoy.whenPressed(new elMove(2));

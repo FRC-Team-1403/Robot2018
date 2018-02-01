@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class mpManipulate extends Command {
 
-	boolean direction;
 	double speed;
-    public mpManipulate(boolean direction, double speed) {
+	String direction;
+    public mpManipulate(String direction, double speed) {
         // Use requires() here to declare subsystem dependencies
          requires(Robot.manip);
          this.direction = direction;
@@ -24,7 +24,7 @@ public class mpManipulate extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(direction) {Robot.manip.Intake(speed); }
+    	if(direction.equals("Intake") || direction.equals("In")) {Robot.manip.Intake(speed); }
     	else {Robot.manip.Eject(speed); }
     }
 

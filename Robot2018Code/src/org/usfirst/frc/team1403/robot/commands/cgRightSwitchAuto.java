@@ -10,7 +10,8 @@ public class cgRightSwitchAuto extends CommandGroup {
     public cgRightSwitchAuto() {
         // Add Commands here:
         addSequential(new dtDriveTimeGyro(3, 0.5));
-        addSequential(new mpManipulate(false, 0.75), 1);
+        addSequential(new elMove(2));
+        addSequential(new mpManipulate("Eject", 0.75), 1);
         
         //addSequential(new Command2());
         // these will run in order.

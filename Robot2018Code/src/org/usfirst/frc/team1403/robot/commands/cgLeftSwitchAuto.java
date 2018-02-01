@@ -9,11 +9,12 @@ public class cgLeftSwitchAuto extends CommandGroup {
     public cgLeftSwitchAuto() {
     	
         addSequential(new dtDriveTimeGyro(3, 0.5));
-        addSequential(new dtSturn90(true));
+        addSequential(new dtSturn90("Left"));
         addSequential(new dtDriveTimeGyro(3, 0.5));
-        addSequential(new dtSturn90(false));
+        addSequential(new dtSturn90("Right"));
         addSequential(new dtDriveTimeGyro(3, 0.5));
-        addSequential(new mpManipulate(false, 0.75), 1);
+        addSequential(new elMove(2));
+        addSequential(new mpManipulate("Eject", 0.75), 1);
         
         // these will run in order.
 

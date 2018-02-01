@@ -19,6 +19,10 @@ public class RobotMap {
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
 	public static double feetPerTick = 0.0010047574;
+	public static double feetPerTick256 = 0.0040906154;
+	public static double inchesPerTick256 = 0.0490873852;
+	public static double feetPerTick1024 =  0.0010226539;
+	public static double inchesPerTick1024 = 0.0122718463;
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
