@@ -7,36 +7,45 @@
 
 package org.usfirst.frc.team1403.robot;
 
+import org.usfirst.frc.team1403.robot.commands.elMove;
+import org.usfirst.frc.team1403.robot.commands.mpManipulate;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joystick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
 
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
-	// commands the same as any other Button.
+	public Joystick djoy = new Joystick(0);
+	public Button aDjoy = new JoystickButton(djoy, 1);
+	public Button bDjoy = new JoystickButton(djoy, 2);
+	public Button xDjoy = new JoystickButton(djoy, 3);
+	public Button yDjoy = new JoystickButton(djoy, 4);
+	public Button rbDjoy = new JoystickButton(djoy, 5);
+	public Button lbDjoy = new JoystickButton(djoy, 6);
+	
+	public Joystick ojoy = new Joystick(1);
+	public Button aOjoy = new JoystickButton(ojoy, 1);
+	public Button bOjoy = new JoystickButton(ojoy, 2);
+	public Button xOjoy = new JoystickButton(ojoy, 3);
+	public Button yOjoy = new JoystickButton(ojoy, 4);
+	public Button rbOjoy = new JoystickButton(ojoy, 5);
+	public Button lbOjoy = new JoystickButton(ojoy, 6);
 
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
 
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
+	public OI() {
+		
+		lbOjoy.whenPressed(new mpManipulate(true, ojoy.getRawAxis(2)));
+		rbOjoy.whenPressed(new mpManipulate(false, ojoy.getRawAxis(3)));
+		
+		aOjoy.whenPressed(new elMove(1));
+		bOjoy.whenPressed(new elMove(2));
+		xOjoy.whenPressed(new elMove(3));
+		yOjoy.whenPressed(new elMove(4));
+		
+	}
 }
