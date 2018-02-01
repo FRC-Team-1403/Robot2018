@@ -3,6 +3,7 @@ package org.usfirst.frc.team1403.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -11,10 +12,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 
-    public DigitalInput opticHigh;
-    public DigitalInput opticMax;
-    public DigitalInput opticMid;
-    public DigitalInput opticLow;
+    public DigitalInput opticHigh, opticMax, opticMid, opticLow;
+    public AnalogInput infrared;
     public TalonSRX elMotor;
 
     

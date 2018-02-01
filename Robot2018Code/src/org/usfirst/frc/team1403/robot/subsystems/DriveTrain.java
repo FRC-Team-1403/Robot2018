@@ -17,9 +17,8 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 	//public TalonSRX motor4;
     //public TalonSRX motor5;
-    public TalonSRX motor6;
+    public TalonSRX motor6, motor2;
     //public TalonSRX motor0, motor1;
-    public TalonSRX motor2;
     public AnalogGyro gyro;
     
     public DriveTrain() {
