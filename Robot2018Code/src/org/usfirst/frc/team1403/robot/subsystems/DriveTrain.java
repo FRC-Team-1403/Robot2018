@@ -62,6 +62,10 @@ public class DriveTrain extends Subsystem {
     	//motor5.set(ControlMode.PercentOutput, -Robot.m_oi.stick.getRawAxis(5));
     	}
     }
+    public void stop() {
+    	motor6.set(ControlMode.PercentOutput, 0.0);
+		motor2.set(ControlMode.PercentOutput, 0.0);
+    }
    
     public double getPosition() {return motor6.getSensorCollection().getQuadraturePosition() * RobotMap.feetPerTick; }
 

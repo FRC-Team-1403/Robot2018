@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1403.robot;
 
+import org.usfirst.frc.team1403.robot.commands.dtAllStop;
 import org.usfirst.frc.team1403.robot.commands.elMove;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
 import edu.wpi.first.wpilibj.Joystick;
@@ -45,8 +46,10 @@ public class OI {
 		rbOjoy.whenPressed(new mpManipulate("Eject", 0.75));
 		aOjoy.whenPressed(new elMove(1));
 		bOjoy.whenPressed(new elMove(2));
-		xOjoy.whenPressed(new elMove(3));
-		yOjoy.whenPressed(new elMove(4));
+		xOjoy.whenPressed(new elMove(4));
+		yOjoy.whenPressed(new elMove(3));
 		
+		startDjoy.whileHeld(new dtAllStop());
+	
 	}
 }
