@@ -67,7 +67,7 @@ public class Robot extends IterativeRobot {
 		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) { chooserint++; SmartDashboard.putNumber("chooserint", chooserint%7); }
 	
 		switch(chooserint%2) {
-		case 0: SmartDashboard.putString("Auto Selector", "Straight");break;
+		case 0: SmartDashboard.putString("Auto Selector", "Straight");break;//Gucci gang
 		case 1: SmartDashboard.putString("Auto Selector", "Switch");break; 
 		}
 }
