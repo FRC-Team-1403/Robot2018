@@ -12,7 +12,7 @@ public class cgLeftScaleAuto extends CommandGroup {
         addSequential(new dtDriveTimeGyro(5, 0.5));
         addSequential(new dtSturn90("Right"));
         addSequential(new elMove(3));
-        addSequential(new mpRollerClaw(), 1);
+        addSequential(new mpManipulate("Eject", 0.75), 1);
         addSequential(new elMove(1));
         // these will run in order.
 

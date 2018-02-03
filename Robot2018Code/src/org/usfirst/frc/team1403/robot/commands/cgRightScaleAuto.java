@@ -12,7 +12,7 @@ public class cgRightScaleAuto extends CommandGroup {
     	addSequential(new dtDriveTimeGyro(5, 0.5));
         addSequential(new dtSturn90("Left"));
         addSequential(new elMove(3));
-        addSequential(new mpRollerClaw(), 1);
+        addSequential(new mpManipulate("Eject", 0.75), 1);
         addSequential(new elMove(1));
 
         // To run multiple commands at the same time,

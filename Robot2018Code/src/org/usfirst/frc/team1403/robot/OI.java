@@ -7,12 +7,8 @@
 
 package org.usfirst.frc.team1403.robot;
 
-import org.usfirst.frc.team1403.robot.commands.cgRollerClawDefaultElevator;
 import org.usfirst.frc.team1403.robot.commands.elMove;
-import org.usfirst.frc.team1403.robot.commands.mpGroundEject;
-import org.usfirst.frc.team1403.robot.commands.mpGroundIntake;
-import org.usfirst.frc.team1403.robot.commands.mpRollerClaw;
-
+import org.usfirst.frc.team1403.robot.commands.mpManipulate;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -30,6 +26,8 @@ public class OI {
 	public Button yDjoy = new JoystickButton(djoy, 4);
 	public Button rbDjoy = new JoystickButton(djoy, 5);
 	public Button lbDjoy = new JoystickButton(djoy, 6);
+	public Button startDjoy =  new JoystickButton(djoy, 8);
+
 	
 	public Joystick ojoy = new Joystick(1);
 	public Button aOjoy = new JoystickButton(ojoy, 1);
@@ -43,9 +41,8 @@ public class OI {
 
 	public OI() {
 		
-		lbOjoy.whenPressed(new mpGroundIntake("Intake", ojoy.getRawAxis(2)));
-		rbOjoy.whenPressed(new mpGroundEject("Eject", ojoy.getRawAxis(3)));
-		startOjoy.whenPressed(new cgRollerClawDefaultElevator());
+		lbOjoy.whenPressed(new mpManipulate("Intake", 0.75));
+		rbOjoy.whenPressed(new mpManipulate("Eject", 0.75));
 		aOjoy.whenPressed(new elMove(1));
 		bOjoy.whenPressed(new elMove(2));
 		xOjoy.whenPressed(new elMove(3));

@@ -7,11 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class mpRollerClaw extends Command {
+public class mpManipulate extends Command {
 
-    public mpRollerClaw() {
+	private double speed;
+	private String direction;
+    public mpManipulate(String direction, double speed) {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.manip);
+        requires(Robot.manip);
+        this.direction = direction;
+        this.speed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -20,10 +24,15 @@ public class mpRollerClaw extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		Robot.manip.ejectRollers(0.8);
-   
+    	if(direction.equals("Eject") || direction.equals("eject")) {
+    		Robot.manip.eject(speed);
+    		if (Robot.elevator.opticLow.get()) { Robot.manip.ejectRollers(speed); }
+    	}
+    	else {
+    		Robot.manip.intake(speed); 
+    		if (Robot.elevator.opticLow.get()) { Robot.manip.intakeRollers(speed); }
+    	}
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return false;

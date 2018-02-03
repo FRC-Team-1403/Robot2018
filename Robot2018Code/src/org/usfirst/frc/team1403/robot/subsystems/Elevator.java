@@ -21,20 +21,17 @@ public class Elevator extends Subsystem {
 
     
     public Elevator() {
-    	opticHigh = new DigitalInput(RobotMap.OpticHigh);
-    	opticMid = new DigitalInput(RobotMap.OpticMid);
-    	opticLow = new DigitalInput(RobotMap.OpticLow);
-    	opticMax = new DigitalInput(RobotMap.OpticMax);
+    	opticHigh = new DigitalInput(RobotMap.opticHigh);
+    	opticMid = new DigitalInput(RobotMap.opticMid);
+    	opticLow = new DigitalInput(RobotMap.opticLow);
+    	opticMax = new DigitalInput(RobotMap.opticMax);
     	elMotor = new TalonSRX(RobotMap.elevatorMotor);
     }
 
     public void Move(boolean direction) {
-    	if (direction) {
-    		elMotor.set(ControlMode.PercentOutput, 0.5);
-    		}
-    	else {
-    		elMotor.set(ControlMode.PercentOutput, -0.5);
-    		}
+    	if (direction) { elMotor.set(ControlMode.PercentOutput, 0.5); }
+    	else { elMotor.set(ControlMode.PercentOutput, -0.5); }
+    	
     }
     public void move(double position) {
     	elMotor.set(ControlMode.PercentOutput, 0.5*position);

@@ -30,17 +30,17 @@ public class RobotMap {
 	public static int gyroSensor = 0;
 	
 	//Elevator
-	public static int OpticLow = 2;
-	public static int OpticMid = 1;
-	public static int OpticHigh = 0;
-	public static int OpticMax = 3;
+	public static int opticLow = 2;
+	public static int opticMid = 1;
+	public static int opticHigh = 0;
+	public static int opticMax = 3;
 	public static int elevatorMotor = 5;
 	
 	//Manipulation
-	public static int intakeLeft = 0;
-	public static int intakeRight = 1;
-	public static int rollerLeft = 3;
-	public static int rollerRight = 4;
+	public static int inLeft = 0;
+	public static int inRight = 1;
+	public static int rlLeft = 3;
+	public static int rlRight = 4;
 	
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

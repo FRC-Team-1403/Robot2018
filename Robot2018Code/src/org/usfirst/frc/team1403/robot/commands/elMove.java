@@ -33,21 +33,13 @@ public class elMove extends Command {
     		gate = Robot.elevator.opticMax;
     		break; 
     	case 3: 
-    		if (Robot.elevator.opticLow.get() || Robot.elevator.opticMid.get()) {
-    			direction = true; 
-    		}
-    		else {
-    			direction = false; 
-    			}
+    		if (Robot.elevator.opticLow.get() || Robot.elevator.opticMid.get()) { direction = true; }
+    		else { direction = false; }
     		gate = Robot.elevator.opticHigh;
     		break; 
     	case 2: 
-    		if (Robot.elevator.opticMax.get() || Robot.elevator.opticHigh.get()) {
-    			direction = false; 
-    			}
-    		else {
-    			direction = true;
-    			}
+    		if (Robot.elevator.opticMax.get() || Robot.elevator.opticHigh.get()) { direction = false; }
+    		else {direction = true;}
     		gate = Robot.elevator.opticMid;
     		break; 
     	case 1: 
@@ -56,8 +48,7 @@ public class elMove extends Command {
     		break; 
     	}
     	
-    	while (!gate.get()) {Robot.elevator.Move(direction); 
-    	}
+    	while (!gate.get()) {Robot.elevator.Move(direction); }
     	
     		
 
