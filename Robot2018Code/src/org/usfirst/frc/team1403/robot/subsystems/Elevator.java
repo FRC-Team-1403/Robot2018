@@ -29,8 +29,12 @@ public class Elevator extends Subsystem {
     }
 
     public void Move(boolean direction) {
-    	if (direction) { elMotor.set(ControlMode.PercentOutput, 0.5); }
-    	else { elMotor.set(ControlMode.PercentOutput, -0.5); }
+    	if (direction) { 
+    		elMotor.set(ControlMode.PercentOutput, 0.5); 
+    	}
+    	else { 
+    		elMotor.set(ControlMode.PercentOutput, -0.5); 
+    	}
     	
     }
     public void move(double position) {
