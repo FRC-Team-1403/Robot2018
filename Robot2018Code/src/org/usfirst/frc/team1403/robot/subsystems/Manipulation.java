@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1403.robot.subsystems;
 
+import org.usfirst.frc.team1403.robot.RobotMap;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -10,23 +12,34 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Manipulation extends Subsystem {
 
-    public TalonSRX inMotor1;
-    public TalonSRX inMotor2;
+    public TalonSRX leftIntake;
+    public TalonSRX rightIntake;
+    public TalonSRX rollerMotorRight;
+    public TalonSRX rollerMotorLeft;
 
 	public Manipulation() {
-		inMotor1 = new TalonSRX(0);
-		inMotor2 = new TalonSRX(1);
+		leftIntake = new TalonSRX(RobotMap.intakeLeft);
+		rightIntake = new TalonSRX(RobotMap.intakeRight);
+		rollerMotorRight = new TalonSRX(RobotMap.rollerRight);
+		rollerMotorLeft = new TalonSRX(RobotMap.rollerLeft);
 	}
 	
-	public void Intake(double x) {
-		inMotor1.set(ControlMode.PercentOutput, x);
-		inMotor2.set(ControlMode.PercentOutput, -x);
+	public void intake(double speed) {
+		leftIntake.set(ControlMode.PercentOutput, speed);
+		rightIntake.set(ControlMode.PercentOutput, -speed);
 	}
-	public void Eject(double y) {
-		inMotor1.set(ControlMode.PercentOutput, -y);
-		inMotor2.set(ControlMode.PercentOutput, y);
+	public void eject(double speed) {
+		leftIntake.set(ControlMode.PercentOutput, -speed);
+		rightIntake.set(ControlMode.PercentOutput, speed);
 	}
-
+	public void intakeRollers(double speed) {
+		rollerMotorRight.set(ControlMode.PercentOutput, speed);
+		rollerMotorLeft.set(ControlMode.PercentOutput, -speed);
+	}
+	public void ejectRollers(double speed) {
+		rollerMotorRight.set(ControlMode.PercentOutput, -speed);
+		rollerMotorLeft.set(ControlMode.PercentOutput, speed);
+	}
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

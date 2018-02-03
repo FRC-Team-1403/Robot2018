@@ -23,6 +23,25 @@ public class RobotMap {
 	public static double inchesPerTick256 = 0.0490873852;
 	public static double feetPerTick1024 =  0.0010226539;
 	public static double inchesPerTick1024 = 0.0122718463;
+	
+	//DriveTrain
+	public static int leftMotor = 2;
+	public static int rightMotor = 3;
+	public static int gyroSensor = 0;
+	
+	//Elevator
+	public static int OpticLow = 2;
+	public static int OpticMid = 1;
+	public static int OpticHigh = 0;
+	public static int OpticMax = 3;
+	public static int elevatorMotor = 5;
+	
+	//Manipulation
+	public static int intakeLeft = 0;
+	public static int intakeRight = 1;
+	public static int rollerLeft = 3;
+	public static int rollerRight = 4;
+	
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;

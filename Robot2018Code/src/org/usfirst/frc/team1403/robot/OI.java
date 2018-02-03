@@ -7,8 +7,11 @@
 
 package org.usfirst.frc.team1403.robot;
 
+import org.usfirst.frc.team1403.robot.commands.cgRollerClawDefaultElevator;
 import org.usfirst.frc.team1403.robot.commands.elMove;
-import org.usfirst.frc.team1403.robot.commands.mpManipulate;
+import org.usfirst.frc.team1403.robot.commands.mpGroundEject;
+import org.usfirst.frc.team1403.robot.commands.mpGroundIntake;
+import org.usfirst.frc.team1403.robot.commands.mpRollerClaw;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -35,13 +38,14 @@ public class OI {
 	public Button yOjoy = new JoystickButton(ojoy, 4);
 	public Button rbOjoy = new JoystickButton(ojoy, 5);
 	public Button lbOjoy = new JoystickButton(ojoy, 6);
+	public Button startOjoy =  new JoystickButton(ojoy, 8);
 
 
 	public OI() {
 		
-		lbOjoy.whenPressed(new mpManipulate("Intake", ojoy.getRawAxis(2)));
-		rbOjoy.whenPressed(new mpManipulate("Eject", ojoy.getRawAxis(3)));
-		
+		lbOjoy.whenPressed(new mpGroundIntake("Intake", ojoy.getRawAxis(2)));
+		rbOjoy.whenPressed(new mpGroundEject("Eject", ojoy.getRawAxis(3)));
+		startOjoy.whenPressed(new cgRollerClawDefaultElevator());
 		aOjoy.whenPressed(new elMove(1));
 		bOjoy.whenPressed(new elMove(2));
 		xOjoy.whenPressed(new elMove(3));

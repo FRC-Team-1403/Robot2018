@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class mpManipulate extends Command {
+public class mpGroundIntake extends Command {
 
-	double speed;
+	private double speed;
 	String direction;
-    public mpManipulate(String direction, double speed) {
+    public mpGroundIntake(String direction, double speed) {
         // Use requires() here to declare subsystem dependencies
          requires(Robot.manip);
          this.direction = direction;
@@ -24,8 +24,15 @@ public class mpManipulate extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(direction.equals("Intake") || direction.equals("In")) {Robot.manip.Intake(speed); }
-    	else {Robot.manip.Eject(speed); }
+    	if(direction.equals("Intake") || direction.equals("In")) {
+    		Robot.manip.intake(speed); 
+    		Robot.manip.intakeRollers(speed);
+    		}
+    	else {
+    		Robot.manip.intake(0); 
+    		Robot.manip.intakeRollers(0);
+    		
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

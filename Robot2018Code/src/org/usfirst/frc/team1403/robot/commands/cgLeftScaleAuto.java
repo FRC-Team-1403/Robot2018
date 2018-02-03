@@ -5,14 +5,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class cgRightScale extends CommandGroup {
+public class cgLeftScaleAuto extends CommandGroup {
 
-    public cgRightScale() {
+    public cgLeftScaleAuto() {
         // Add Commands here:
-    	addSequential(new dtDriveTimeGyro(5, 0.5));
-        addSequential(new dtSturn90("Left"));
+        addSequential(new dtDriveTimeGyro(5, 0.5));
+        addSequential(new dtSturn90("Right"));
         addSequential(new elMove(3));
-        addSequential(new mpManipulate("Eject", 0.75), 1);
+        addSequential(new mpRollerClaw(), 1);
+        addSequential(new elMove(1));
+        // these will run in order.
 
         // To run multiple commands at the same time,
         // use addParallel()
@@ -26,4 +28,5 @@ public class cgRightScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     }
+
 }

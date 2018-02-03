@@ -25,11 +25,11 @@ public class DriveTrain extends Subsystem {
     	
     	//motor4 = new TalonSRX(4); //nothing
     	//motor5 = new TalonSRX(5); //hang motor changed to right2 (not working)
-    	motor6 = new TalonSRX(6); //left1
+    	motor6 = new TalonSRX(RobotMap.leftMotor); //left1
     	//motor1 = new TalonSRX(1); //nothing
     	//motor0 = new TalonSRX(0); //left2 (not in use)
-    	motor2 = new TalonSRX(2); //right1
-    	gyro = new AnalogGyro(0);
+    	motor2 = new TalonSRX(RobotMap.rightMotor); //right1
+    	gyro = new AnalogGyro(RobotMap.gyroSensor);
 	}
     
     public void initDefaultCommand() {
