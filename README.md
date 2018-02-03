@@ -5,6 +5,5 @@ Java Command-Based
 - Each command is named with two lowercase letters at the beginning
 - These two letters indicate which subsystem or group said command modifies
 
-'''
-mpManipulate.java
-'''
+- The `mpManipulate.java` command modifies the `Manipulation.java` subsystem
+- The `cgRightSwitchAuto.java` is a command group (cg)
