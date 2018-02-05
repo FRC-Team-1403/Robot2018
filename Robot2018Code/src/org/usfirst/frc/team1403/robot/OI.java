@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1403.robot;
 
+import org.usfirst.frc.team1403.robot.commands.cgDownIntake;
 import org.usfirst.frc.team1403.robot.commands.dtAllStop;
 import org.usfirst.frc.team1403.robot.commands.elMove;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
@@ -43,8 +44,8 @@ public class OI {
 
 	public OI() {
 		
-		lbOjoy.whenPressed(new mpManipulate("Intake", 0.75));
-		rbOjoy.whenPressed(new mpManipulate("Eject", 0.75));
+		lbOjoy.whileHeld(new cgDownIntake());
+		rbOjoy.whileHeld(new mpManipulate("Eject", 0.75));
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
 		bOjoy.whileHeld(new dtAllStop());

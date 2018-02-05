@@ -25,7 +25,7 @@ public class mpManipulate extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(direction.equals("Eject") || direction.equals("eject")) {
+    	if(direction.toLowerCase().equals("eject")) {
     		
     		Robot.manip.eject(speed);
     		Robot.manip.ejectRollers(speed);

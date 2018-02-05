@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team1403.robot.commands.dtDriveStraightGyro;
 import org.usfirst.frc.team1403.robot.commands.dtDriveTimeGyro;
 import org.usfirst.frc.team1403.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1403.robot.commands.cgLeftSwitchAuto;

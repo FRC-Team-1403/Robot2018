@@ -11,6 +11,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class elMove extends Command {
 	
 	int spot;
+	boolean direction = true;
+	DigitalInput gate = Robot.elevator.opticIntake;
+	
     public elMove(int spot) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.elevator);
@@ -23,9 +26,6 @@ public class elMove extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	boolean direction = true;
-    	DigitalInput gate = Robot.elevator.opticIntake;
     	
     	switch(spot) {
     	case 2: 
@@ -45,7 +45,7 @@ public class elMove extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return gate.get();
     }
 
     // Called once after isFinished returns true
