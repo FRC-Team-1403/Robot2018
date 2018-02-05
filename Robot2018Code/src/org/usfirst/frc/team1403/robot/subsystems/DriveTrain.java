@@ -17,18 +17,16 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 	//public TalonSRX motor4;
     //public TalonSRX motor5;
-    public TalonSRX motor6, motor2;
+    public TalonSRX left1, left2, right1, right2;
     //public TalonSRX motor0, motor1;
     public AnalogGyro gyro;
     
-    public DriveTrain() {
-    	
-    	//motor4 = new TalonSRX(4); //nothing
-    	//motor5 = new TalonSRX(5); //hang motor changed to right2 (not working)
-    	motor6 = new TalonSRX(RobotMap.leftMotor); //left1
-    	//motor1 = new TalonSRX(1); //nothing
-    	//motor0 = new TalonSRX(0); //left2 (not in use)
-    	motor2 = new TalonSRX(RobotMap.rightMotor); //right1
+    public DriveTrain()
+    {	
+    	left1 = new TalonSRX(RobotMap.frontLeftMotor); //left1
+    	left2 = new TalonSRX(RobotMap.backLeftMotor); //left1
+    	right1 = new TalonSRX(RobotMap.frontRightMotor); //left1
+    	right2 = new TalonSRX(RobotMap.backRightMotor); //left1
     	gyro = new AnalogGyro(RobotMap.gyroSensor);
 	}
     
@@ -39,35 +37,46 @@ public class DriveTrain extends Subsystem {
     
     public void setLeftRightPower(double leftPower, double rightPower)
     {
-    	motor6.set(ControlMode.PercentOutput, leftPower);
-    	motor2.set(ControlMode.PercentOutput, -rightPower); 
+    	left1.set(ControlMode.PercentOutput, -leftPower);
+    	left1.set(ControlMode.PercentOutput, -leftPower);
+    	right1.set(ControlMode.PercentOutput, rightPower);
+    	right1.set(ControlMode.PercentOutput, rightPower); 
     }
 
-    public void resetEncoders() {
-    	motor6.getSensorCollection().setQuadraturePosition(0, 0);
-    	motor2.getSensorCollection().setQuadraturePosition(0, 0);
+    public void resetEncoders()
+    {
+    	left1.getSensorCollection().setQuadraturePosition(0, 0);
+    	right1.getSensorCollection().setQuadraturePosition(0, 0);
     }
     
-    public void drive() {
+    public void drive()
+    {
     	if(Robot.m_oi.djoy.getRawButton(6)) {
-    		motor6.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*0.5);
-    		motor2.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5)*-0.5);
+    		left1.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*-0.5);
+    		left2.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*-0.5);
+    		right1.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5)*0.5);
+    		right2.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5)*0.5);
     	}
-    	//motor4.set(ControlMode.PercentOutput, Robot.m_oi.stick.getRawAxis(1));
+    	
     	else {
-    	motor6.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1));
-    	//motor0.set(ControlMode.PercentOutput, Robot.m_oi.stick.getRawAxis(1));
-    	//motor1.set(ControlMode.PercentOutput, -Robot.m_oi.stick.getRawAxis(5));
-    	motor2.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5));
-    	//motor5.set(ControlMode.PercentOutput, -Robot.m_oi.stick.getRawAxis(5));
+    		left1.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(1));
+    		left2.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(1));
+    		right1.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5));
+    		right2.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5));
     	}
     }
-    public void stop() {
-    	motor6.set(ControlMode.PercentOutput, 0.0);
-		motor2.set(ControlMode.PercentOutput, 0.0);
+    
+    public void stop()
+    {
+    	left1.set(ControlMode.PercentOutput, 0.0);
+		left2.set(ControlMode.PercentOutput, 0.0);
+    	right1.set(ControlMode.PercentOutput, 0.0);
+    	right2.set(ControlMode.PercentOutput, 0.0);
     }
    
-    public double getPosition() {return motor6.getSensorCollection().getQuadraturePosition() * RobotMap.feetPerTick; }
+    public double getLeftPosition() { return left1.getSensorCollection().getQuadraturePosition() * RobotMap.feetPerTick; }
+    public double getRightPosition() { return right1.getSensorCollection().getQuadraturePosition() * RobotMap.feetPerTick; }
+
 
 }
 

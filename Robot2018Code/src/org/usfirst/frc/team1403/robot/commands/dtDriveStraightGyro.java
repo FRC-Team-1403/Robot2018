@@ -40,9 +40,8 @@ public class dtDriveStraightGyro extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    
-    	return Math.abs(Robot.drivetrain.getPosition()) >= Math.abs(distance);
-    
+    	return ((Math.abs(Robot.drivetrain.getLeftPosition()) >= Math.abs(distance)) && 
+    			(Math.abs(Robot.drivetrain.getRightPosition()) >= Math.abs(distance)));
     }
 
     // Called once after isFinished returns true

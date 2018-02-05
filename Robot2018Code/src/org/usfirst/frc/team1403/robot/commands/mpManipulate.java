@@ -28,20 +28,25 @@ public class mpManipulate extends Command {
     	if(direction.equals("Eject") || direction.equals("eject")) {
     		
     		Robot.manip.eject(speed);
-    		if (Robot.elevator.opticLow.get()) {Robot.manip.ejectRollers(speed); }
-    	
+    		Robot.manip.ejectRollers(speed);
+    		
+    		if(Robot.elevator.opticSwitch.get()) {
+    		Robot.manip.ejectRollers(speed);
+    	}
     	}
     	
     	else {
     		
     		while(!Robot.manip.limitSwitch.get()) {
+    			
     		Robot.manip.intake(speed); 
+    		Robot.manip.intakeRollers(speed);
+    		}
     		
-    		if (Robot.elevator.opticLow.get()) { Robot.manip.intakeRollers(speed); }
     		Robot.manip.intakeRollers(0);
     		
     		}
-    	}
+  
     }
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

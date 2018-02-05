@@ -25,40 +25,21 @@ public class elMove extends Command {
     protected void execute() {
     	
     	boolean direction = true;
-    	DigitalInput gate = Robot.elevator.opticMid;
+    	DigitalInput gate = Robot.elevator.opticIntake;
     	
     	switch(spot) {
-    	case 4: 
-    		direction = true;
-    		gate = Robot.elevator.opticMax;
-    		break; 
-    	case 3: 
-    		if (Robot.elevator.opticLow.get() || Robot.elevator.opticMid.get()) {
-    			direction = true; 
-    			}
-    	   else { 
-    			direction = false; 
-    			}
-    		gate = Robot.elevator.opticHigh;
-    		break; 
     	case 2: 
-    		if (Robot.elevator.opticMax.get() || Robot.elevator.opticHigh.get()) { 
-    			direction = false; 
-    			}
-    		else {
-    			direction = true;
-    			}
-    		gate = Robot.elevator.opticMid;
+    		direction = true;
+    		gate = Robot.elevator.opticSwitch;
     		break; 
     	case 1: 
-    		direction = false;
-    		gate = Robot.elevator.opticLow;
+    		direction = false; 
+    		gate = Robot.elevator.opticIntake;
     		break; 
-    	}
+    		}
     	
-    	while (!gate.get()) {
-    		Robot.elevator.Move(direction); 
-    	}
+    	
+    	while (!gate.get()) { Robot.elevator.Move(direction); }
     	
     }
 

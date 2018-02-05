@@ -37,6 +37,7 @@ public class OI {
 	public Button yOjoy = new JoystickButton(ojoy, 4);
 	public Button rbOjoy = new JoystickButton(ojoy, 5);
 	public Button lbOjoy = new JoystickButton(ojoy, 6);
+	public Button backOjoy = new JoystickButton(ojoy,7);
 	public Button startOjoy =  new JoystickButton(ojoy, 8);
 
 
@@ -44,10 +45,8 @@ public class OI {
 		
 		lbOjoy.whenPressed(new mpManipulate("Intake", 0.75));
 		rbOjoy.whenPressed(new mpManipulate("Eject", 0.75));
-		aOjoy.whenPressed(new elMove(1));
-		bOjoy.whenPressed(new elMove(2));
-		xOjoy.whenPressed(new elMove(4));
-		yOjoy.whenPressed(new elMove(3));
+		backOjoy.whenPressed(new elMove(1));
+		startOjoy.whenPressed(new elMove(2));
 		
 		startDjoy.whileHeld(new dtAllStop());
 	
