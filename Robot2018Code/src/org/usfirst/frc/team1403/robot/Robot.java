@@ -90,12 +90,8 @@ public class Robot extends IterativeRobot {
 		switch(chooserint%2) {
 		case 0: autonomousCommand = new dtDriveTimeGyro(4, 0.6); break;
 		case 1: {
-			if(gameData.charAt(0) == 'L') {
-				autonomousCommand = new cgLeftSwitchAuto(); 
-				}
-			else {
-				autonomousCommand = new cgRightSwitchAuto();
-				}
+			if(gameData.charAt(0) == 'L') { autonomousCommand = new cgLeftSwitchAuto(); }
+			else { autonomousCommand = new cgRightSwitchAuto(); }
 			}
 		}
 		

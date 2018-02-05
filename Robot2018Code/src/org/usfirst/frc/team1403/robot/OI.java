@@ -27,9 +27,9 @@ public class OI {
 	public Button yDjoy = new JoystickButton(djoy, 4);
 	public Button rbDjoy = new JoystickButton(djoy, 5);
 	public Button lbDjoy = new JoystickButton(djoy, 6);
+	public Button backDjoy = new JoystickButton(djoy,7);
 	public Button startDjoy =  new JoystickButton(djoy, 8);
 
-	
 	public Joystick ojoy = new Joystick(1);
 	public Button aOjoy = new JoystickButton(ojoy, 1);
 	public Button bOjoy = new JoystickButton(ojoy, 2);
@@ -47,8 +47,7 @@ public class OI {
 		rbOjoy.whenPressed(new mpManipulate("Eject", 0.75));
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
-		
-		startDjoy.whileHeld(new dtAllStop());
+		bOjoy.whileHeld(new dtAllStop());
 	
 	}
 }
