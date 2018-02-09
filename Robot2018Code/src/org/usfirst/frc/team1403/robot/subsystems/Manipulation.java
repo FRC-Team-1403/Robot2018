@@ -16,7 +16,8 @@ public class Manipulation extends Subsystem {
     public TalonSRX inLeft, inRight, rlRight, rlLeft;
     public DigitalInput limitSwitch;
 
-	public Manipulation() {
+	public Manipulation()
+	{
 		inLeft = new TalonSRX(RobotMap.inLeft);
 		inRight = new TalonSRX(RobotMap.inRight);
 		rlRight = new TalonSRX(RobotMap.rlRight);
@@ -24,22 +25,26 @@ public class Manipulation extends Subsystem {
 		limitSwitch = new DigitalInput(RobotMap.limitSwitch);
 	}
 	
-	public void intake(double speed) {
+	public void intake(double speed) 
+	{
 		inLeft.set(ControlMode.PercentOutput, speed);
 		inRight.set(ControlMode.PercentOutput, -speed);
 	}
 	
-	public void eject(double speed) {
+	public void eject(double speed)
+	{
 		inLeft.set(ControlMode.PercentOutput, -speed);
 		inRight.set(ControlMode.PercentOutput, speed);
 	}
 	
-	public void intakeRollers(double speed) {
+	public void intakeRollers(double speed)
+	{
 		rlRight.set(ControlMode.PercentOutput, speed);
 		rlLeft.set(ControlMode.PercentOutput, -speed);
 	}
 	
-	public void ejectRollers(double speed) {
+	public void ejectRollers(double speed) 
+	{
 		rlRight.set(ControlMode.PercentOutput, -speed);
 		rlLeft.set(ControlMode.PercentOutput, speed);
 	}

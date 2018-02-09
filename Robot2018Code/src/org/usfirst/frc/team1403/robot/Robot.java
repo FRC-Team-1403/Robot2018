@@ -42,7 +42,8 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	@Override
-	public void robotInit() {
+	public void robotInit()
+	{
 		drivetrain = new DriveTrain();
 		manip = new Manipulation();
 		elevator = new Elevator();
@@ -61,7 +62,8 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() { chooserint = 0; }
 
 	@Override
-	public void disabledPeriodic() {
+	public void disabledPeriodic() 
+	{
 		Scheduler.getInstance().run();
 		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) { chooserint++; SmartDashboard.putNumber("chooserint", chooserint%7); }
 	
@@ -71,7 +73,8 @@ public class Robot extends IterativeRobot {
 		}
 }
 	@Override
-	public void autonomousInit() {
+	public void autonomousInit() 
+	{
 		autonomousCommand = chooser.getSelected();
 
 		/*
