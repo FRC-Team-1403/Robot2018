@@ -20,24 +20,21 @@ public class Elevator extends Subsystem {
     public TalonSRX elMotor;
 
     
-    public Elevator() {
+    public Elevator()
+    {
     	opticSwitch = new DigitalInput(RobotMap.opticSwitch);
     	opticIntake = new DigitalInput(RobotMap.opticIntake);
     	elMotor = new TalonSRX(RobotMap.elevatorMotor);
     }
 
-    public void Move(boolean direction) {
-    	if (direction) { 
-    		elMotor.set(ControlMode.PercentOutput, 0.5); 
-    	}
-    	else { 
-    		elMotor.set(ControlMode.PercentOutput, -0.5); 
-    	}
-    	
+    public void Move(boolean direction) // false = down; true = up
+    {
+    	if (direction) { elMotor.set(ControlMode.PercentOutput, 0.5); }
+    	else { elMotor.set(ControlMode.PercentOutput, -0.5); }
     }
-    public void move(double position) {
-    	elMotor.set(ControlMode.PercentOutput, 0.5*position);
-    }
+    
+    public void move(double position) { elMotor.set(ControlMode.PercentOutput, 0.5*position); }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

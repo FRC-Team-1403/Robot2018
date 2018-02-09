@@ -40,6 +40,16 @@ public class OI {
 	public Button lbOjoy = new JoystickButton(ojoy, 6);
 	public Button backOjoy = new JoystickButton(ojoy,7);
 	public Button startOjoy =  new JoystickButton(ojoy, 8);
+	
+	public Joystick tjoy = new Joystick(1);
+	public Button aTjoy = new JoystickButton(tjoy, 1);
+	public Button bTjoy = new JoystickButton(tjoy, 2);
+	public Button xTjoy = new JoystickButton(tjoy, 3);
+	public Button yTjoy = new JoystickButton(tjoy, 4);
+	public Button rbTjoy = new JoystickButton(tjoy, 5);
+	public Button lbTjoy = new JoystickButton(tjoy, 6);
+	public Button backTjoy = new JoystickButton(tjoy,7);
+	public Button startTjoy =  new JoystickButton(tjoy, 8);
 
 
 	public OI() {
@@ -49,6 +59,6 @@ public class OI {
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
 		bOjoy.whileHeld(new dtAllStop());
-	
+
 	}
 }

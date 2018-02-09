@@ -21,7 +21,7 @@ public class Manipulation extends Subsystem {
 		inRight = new TalonSRX(RobotMap.inRight);
 		rlRight = new TalonSRX(RobotMap.rlRight);
 		rlLeft = new TalonSRX(RobotMap.rlLeft);
-		limitSwitch = new DigitalInput(0);
+		limitSwitch = new DigitalInput(RobotMap.limitSwitch);
 	}
 	
 	public void intake(double speed) {

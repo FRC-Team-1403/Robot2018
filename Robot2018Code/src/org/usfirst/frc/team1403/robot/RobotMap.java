@@ -25,10 +25,10 @@ public class RobotMap {
 	public static double inchesPerTick1024 = 0.0122718463;
 	
 	//DriveTrain
-	public static int frontLeftMotor = 0;
-	public static int backLeftMotor = 1;
-	public static int frontRightMotor = 2;
-	public static int backRightMotor = 3;
+	public static int frontLeftMotor = 6;
+	public static int backLeftMotor = 7;
+	public static int frontRightMotor = 4; //has left encoder
+	public static int backRightMotor = 5; //has right encoder
 
 	public static int gyroSensor = 0;
 	
@@ -38,10 +38,11 @@ public class RobotMap {
 	public static int elevatorMotor = 4;
 	
 	//Manipulation
-	public static int inLeft = 5;
-	public static int inRight = 6;
-	public static int rlLeft = 7;
-	public static int rlRight = 8;
+	public static int inLeft = 0;
+	public static int inRight = 1;
+	public static int rlLeft = 2;
+	public static int rlRight = 3;
+	public static int limitSwitch = 1;
 	
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
