@@ -50,8 +50,8 @@ public class OI {
 	public Button bTjoy = new JoystickButton(tjoy, 2);
 	public Button xTjoy = new JoystickButton(tjoy, 3);
 	public Button yTjoy = new JoystickButton(tjoy, 4);
-	public Button rbTjoy = new JoystickButton(tjoy, 5);
-	public Button lbTjoy = new JoystickButton(tjoy, 6);
+	public Button lbTjoy = new JoystickButton(tjoy, 5);
+	public Button rbTjoy = new JoystickButton(tjoy, 6);
 	public Button backTjoy = new JoystickButton(tjoy,7);
 	public Button startTjoy =  new JoystickButton(tjoy, 8);
 
@@ -70,10 +70,11 @@ public class OI {
 		aOjoy.whenPressed(new elMove(3));
 		bOjoy.whileHeld(new dtAllStop());
 		
-		aTjoy.whileHeld(new dtTestMotors(4));
-		bTjoy.whileHeld(new dtTestMotors(5));
+		aTjoy.whileHeld(new dtTestMotors(1));
+		bTjoy.whileHeld(new dtTestMotors(2));
 		xTjoy.whileHeld(new dtTestMotors(6));
 		yTjoy.whileHeld(new dtTestMotors(7));
+		rbTjoy.whileHeld(new dtTestMotors(5));
 
 
 	}
