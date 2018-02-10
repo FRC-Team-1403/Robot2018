@@ -72,8 +72,8 @@ public class DriveTrain extends Subsystem {
     	backRightencL.getSensorCollection().setQuadraturePosition(0, 0);
     }
     
-    public double getLeftPosition() { return frontRightencR.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
-    public double getRightPosition() { return -backRightencL.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
+    public double getLeftPosition() { return -frontRightencR.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
+    public double getRightPosition() { return backRightencL.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
 
 
 }

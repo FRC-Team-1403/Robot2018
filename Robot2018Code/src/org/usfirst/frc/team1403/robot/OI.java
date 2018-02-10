@@ -56,7 +56,7 @@ public class OI {
 
 	public OI() {
 		
-		aDjoy.whenPressed(new dtResetEncoders());
+		aDjoy.whenReleased(new dtResetEncoders());
 		
 		lbOjoy.whileHeld(new cgDownIntake());
 		rbOjoy.whileHeld(new mpManipulate("Eject", 0.75));
