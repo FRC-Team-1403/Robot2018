@@ -110,6 +110,9 @@ public class Recorder {
 	}
 	public boolean hasNextLine() {
 		boolean hasNextLine = getRecording(iteration+1).returnIndex() != -1;
+		if(!hasNextLine) return hasNextLine;
+		if(checkTime()) 
+			nextReading();
 		return hasNextLine;
 	}
 	public void resetReadings() {
@@ -119,11 +122,24 @@ public class Recorder {
 	}
 	public boolean checkTime() {
 		long currTime = System.currentTimeMillis();
-		if(currTime - this.prevTime < 20)
+		System.out.println(currTime);
+		if(currTime - this.prevTime < 20) {
+			interpolateReadings((int)(currTime - this.prevTime));
 			return false;
-		else {
+		} else {
 			this.prevTime = currTime;
 			return true;
+		}
+	}
+	public void interpolateReadings(int timediff) {
+		//20 ms
+		if(this.iteration < 1 || getRecording(iteration+1).returnIndex() == -1) 
+			return;
+		for(String key : sequencedReadings[this.iteration].returnMap().keySet()) {
+			double value = sequencedReadings[this.iteration+1].returnMap().get(key) - sequencedReadings[this.iteration].returnMap().get(key);
+			value *= (double)timediff/20.0;
+			//System.out.println(timediff + " Iter " + iteration + " Value: " + value + "Curr: " + sequencedReadings[this.iteration].returnMap().get(key) + "Next: " + sequencedReadings[this.iteration+1].returnMap().get(key));
+			sequencedReadings[this.iteration].addReading(key, sequencedReadings[this.iteration].returnMap().get(key)+value);
 		}
 	}
 }

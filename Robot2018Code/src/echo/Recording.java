@@ -22,7 +22,6 @@ public class Recording implements Serializable{
 	}
 	public void addReading(String key, double value) {
 		this.Data.put(key, ReferenceToPrimitive(value));
-		System.out.println("Index: " + index + "\tVal: " + value);
 	}
 	public double returnReading(String key) {
 		return this.Data.get(key);
