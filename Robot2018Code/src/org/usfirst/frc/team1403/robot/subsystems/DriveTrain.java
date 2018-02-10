@@ -17,16 +17,24 @@ public class DriveTrain extends Subsystem {
     // here. Call these from Commands.
 	//public TalonSRX motor4;
     //public TalonSRX motor5;
-    public TalonSRX frontLeft, backLeft, frontRightencR, backRightencL;
+    public static TalonSRX frontLeft;
+	public static TalonSRX backLeft;
+	public static TalonSRX frontRightencR;
+	public static TalonSRX backRightencL;
+	public double getRawAxisLeft;
+	public double getRawAxisRight;
     public AnalogGyro gyro;
     
     public DriveTrain()
     {	
+    	
     	frontLeft = new TalonSRX(RobotMap.frontLeftMotor);
     	backLeft = new TalonSRX(RobotMap.backLeftMotor);
     	frontRightencR = new TalonSRX(RobotMap.frontRightMotor);
     	backRightencL = new TalonSRX(RobotMap.backRightMotor);
     	gyro = new AnalogGyro(RobotMap.gyroSensor);
+    	getRawAxisLeft = 0;
+		getRawAxisRight = 0;
 	}
     
     public void initDefaultCommand() { setDefaultCommand(new dtJoyDrive()); }
@@ -41,20 +49,22 @@ public class DriveTrain extends Subsystem {
 
     public void drive()
     {
+    	getRawAxisLeft = Robot.m_oi.djoy.getRawAxis(1);
+    	getRawAxisRight = -Robot.m_oi.djoy.getRawAxis(5);
     	if(Robot.m_oi.djoy.getRawButton(6))
     	{
-    		frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*0.5);
-    		backLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*0.5);
-    		frontRightencR.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5)*0.5);
-    		backRightencL.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5)*0.5);
+    		frontLeft.set(ControlMode.PercentOutput, getRawAxisLeft*0.5);
+    		backLeft.set(ControlMode.PercentOutput, getRawAxisLeft*0.5);
+    		frontRightencR.set(ControlMode.PercentOutput, -getRawAxisRight*0.5);
+    		backRightencL.set(ControlMode.PercentOutput, -getRawAxisRight*0.5);
     	}
     	
     	else
     	{
-    		frontLeft.set(ControlMode.PercentOutput,Robot.m_oi.djoy.getRawAxis(1));
-    		backLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1));
-    		frontRightencR.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5));
-    		backRightencL.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5));
+    		frontLeft.set(ControlMode.PercentOutput,getRawAxisLeft);
+    		backLeft.set(ControlMode.PercentOutput, getRawAxisLeft);
+    		frontRightencR.set(ControlMode.PercentOutput, -getRawAxisRight);
+    		backRightencL.set(ControlMode.PercentOutput, -getRawAxisRight);
     	}
     }
     
@@ -74,6 +84,10 @@ public class DriveTrain extends Subsystem {
     
     public double getLeftPosition() { return -frontRightencR.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
     public double getRightPosition() { return backRightencL.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
+    
+    public static void setSpeed(TalonSRX talon, double speed) {
+    	talon.set(ControlMode.PercentOutput, speed);
+    }
 
 
 }
