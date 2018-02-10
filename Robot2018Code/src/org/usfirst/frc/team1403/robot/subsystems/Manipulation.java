@@ -25,28 +25,28 @@ public class Manipulation extends Subsystem {
 		limitSwitch = new DigitalInput(RobotMap.limitSwitch);
 	}
 	
-	public void intake(double speed) 
+	public void elIntake(double speed) //for roller claw on elevator
 	{
-		inLeft.set(ControlMode.PercentOutput, speed);
-		inRight.set(ControlMode.PercentOutput, -speed);
-	}
-	
-	public void eject(double speed)
-	{
-		inLeft.set(ControlMode.PercentOutput, -speed);
-		inRight.set(ControlMode.PercentOutput, speed);
-	}
-	
-	public void intakeRollers(double speed)
-	{
-		rlRight.set(ControlMode.PercentOutput, speed);
-		rlLeft.set(ControlMode.PercentOutput, -speed);
-	}
-	
-	public void ejectRollers(double speed) 
-	{
-		rlRight.set(ControlMode.PercentOutput, -speed);
 		rlLeft.set(ControlMode.PercentOutput, speed);
+		rlRight.set(ControlMode.PercentOutput, -speed);
+	}
+	
+	public void elEject(double speed) //for roller claw on elevator
+	{
+		rlLeft.set(ControlMode.PercentOutput, -speed);
+		rlRight.set(ControlMode.PercentOutput, speed);
+	}
+	
+	public void groundIntake(double speed) //for ground intake
+	{
+		inRight.set(ControlMode.PercentOutput, speed);
+		inLeft.set(ControlMode.PercentOutput, -speed);
+	}
+	
+	public void groundEject(double speed) //for ground intake
+	{
+		inRight.set(ControlMode.PercentOutput, -speed);
+		inLeft.set(ControlMode.PercentOutput, speed);
 	}
 	
     public void initDefaultCommand() {

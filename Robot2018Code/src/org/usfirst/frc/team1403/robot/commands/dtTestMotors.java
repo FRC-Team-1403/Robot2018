@@ -28,8 +28,8 @@ public class dtTestMotors extends Command {
     {
     	switch(motor)
     	{
-    	case 6: { Robot.drivetrain.frontLeft.set(ControlMode.PercentOutput, 0.25); break; }
-    	case 7: { Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, 0.25); break; }
+    	case 6: { Robot.drivetrain.frontLeft.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 7: { Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, -0.25); break; }
     	case 4: { Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0.25); break; }
     	case 5: { Robot.drivetrain.backRightencL.set(ControlMode.PercentOutput, 0.25); break; }
     	}

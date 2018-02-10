@@ -25,27 +25,22 @@ public class mpManipulate extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(direction.toLowerCase().equals("eject")) {
-    		
-    		Robot.manip.eject(speed);
-    		Robot.manip.ejectRollers(speed);
-    		
-    		if(Robot.elevator.opticSwitch.get()) {
-    		Robot.manip.ejectRollers(speed);
-    	}
+    	if(direction.toLowerCase().equals("eject"))
+    	{
+    		Robot.manip.elEject(speed);
+    		if(Robot.elevator.opticIntake.get()) { Robot.manip.groundEject(speed); }
     	}
     	
-    	else {
-    		
-    		while(!Robot.manip.limitSwitch.get()) {
-    			
-    		Robot.manip.intake(speed); 
-    		Robot.manip.intakeRollers(speed);
+    	else
+    	{
+    		while(!Robot.manip.limitSwitch.get())
+    		{	
+    			Robot.manip.groundIntake(speed); 
+    			Robot.manip.elIntake(speed);
     		}
-    		
-    		Robot.manip.intakeRollers(0);
-    		
-    		}
+    		Robot.manip.groundIntake(0); 
+    		Robot.manip.elIntake(0);
+    	}
   
     }
     // Make this return true when this Command no longer needs to run execute()
