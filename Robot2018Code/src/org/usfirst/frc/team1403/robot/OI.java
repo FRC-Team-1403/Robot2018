@@ -9,10 +9,7 @@ package org.usfirst.frc.team1403.robot;
 
 import org.usfirst.frc.team1403.robot.commands.cgDownIntake;
 import org.usfirst.frc.team1403.robot.commands.dtAllStop;
-import org.usfirst.frc.team1403.robot.commands.dtTestBackLeft;
-import org.usfirst.frc.team1403.robot.commands.dtTestBackRight;
-import org.usfirst.frc.team1403.robot.commands.dtTestFrontLeft;
-import org.usfirst.frc.team1403.robot.commands.dtTestFrontRight;
+import org.usfirst.frc.team1403.robot.commands.dtTestMotors;
 import org.usfirst.frc.team1403.robot.commands.elMove;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
 import edu.wpi.first.wpilibj.Joystick;
@@ -64,10 +61,10 @@ public class OI {
 		startOjoy.whenPressed(new elMove(2));
 		bOjoy.whileHeld(new dtAllStop());
 		
-		aTjoy.whileHeld(new dtTestFrontLeft());
-		bTjoy.whileHeld(new dtTestBackLeft());
-		xTjoy.whileHeld(new dtTestFrontRight());
-		yTjoy.whileHeld(new dtTestBackRight());
+		aTjoy.whileHeld(new dtTestMotors(1));
+		bTjoy.whileHeld(new dtTestMotors(2));
+		xTjoy.whileHeld(new dtTestMotors(3));
+		yTjoy.whileHeld(new dtTestMotors(4));
 
 
 	}
