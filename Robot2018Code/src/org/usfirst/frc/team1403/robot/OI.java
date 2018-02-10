@@ -62,6 +62,7 @@ public class OI {
 		rbOjoy.whileHeld(new mpManipulate("Eject", 0.75));
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
+		aOjoy.whenPressed(new elMove(3));
 		bOjoy.whileHeld(new dtAllStop());
 		
 		aTjoy.whileHeld(new dtTestMotors(4));

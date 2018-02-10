@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 
-    public DigitalInput  opticSwitch, opticIntake;
+    public DigitalInput  opticSwitch, opticIntake, opticMax;
     public AnalogInput infrared;
     public TalonSRX elMotor;
 
@@ -24,6 +24,7 @@ public class Elevator extends Subsystem {
     {
     	opticSwitch = new DigitalInput(RobotMap.opticSwitch);
     	opticIntake = new DigitalInput(RobotMap.opticIntake);
+    	opticMax = new DigitalInput(RobotMap.opticMax);
     	elMotor = new TalonSRX(RobotMap.elevatorMotor);
     }
 

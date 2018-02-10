@@ -34,8 +34,9 @@ public class RobotMap
 	public static int gyroSensor = 0;
 	
 	//Elevator
-	public static int opticIntake = 2;
-	public static int opticSwitch = 0;
+	public static int opticIntake = 0;
+	public static int opticSwitch = 1;
+	public static int opticMax = 2;
 	public static int elevatorMotor = 4;
 	
 	//Manipulation

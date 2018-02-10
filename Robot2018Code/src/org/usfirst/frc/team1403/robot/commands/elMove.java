@@ -28,10 +28,14 @@ public class elMove extends Command {
     protected void execute() {
     	
     	switch(spot) {
-    	case 2: 
+    	case 3:
     		direction = true;
-    		gate = Robot.elevator.opticSwitch;
-    		break; 
+    		gate = Robot.elevator.opticMax;
+    		break;
+    	case 2: 
+    		if (Robot.elevator.opticMax.get()) { direction = false; }
+    		else { direction = true; }
+    		break;
     	case 1: 
     		direction = false; 
     		gate = Robot.elevator.opticIntake;
