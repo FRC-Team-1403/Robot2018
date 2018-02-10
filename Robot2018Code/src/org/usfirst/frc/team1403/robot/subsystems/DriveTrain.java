@@ -33,28 +33,28 @@ public class DriveTrain extends Subsystem {
     
     public void setLeftRightPower(double leftPower, double rightPower)
     {
-    	frontLeft.set(ControlMode.PercentOutput, -leftPower);
-    	backLeft.set(ControlMode.PercentOutput, -leftPower);
-    	frontRightencR.set(ControlMode.PercentOutput, rightPower);
-    	backRightencL.set(ControlMode.PercentOutput, rightPower); 
+    	frontLeft.set(ControlMode.PercentOutput, leftPower);
+    	backLeft.set(ControlMode.PercentOutput, leftPower);
+    	frontRightencR.set(ControlMode.PercentOutput, -rightPower);
+    	backRightencL.set(ControlMode.PercentOutput, -rightPower); 
     }
 
     public void drive()
     {
     	if(Robot.m_oi.djoy.getRawButton(6))
     	{
-    		frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*-0.5);
-    		backLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*-0.5);
-    		frontRightencR.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5)*0.5);
-    		backRightencL.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5)*0.5);
+    		frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*0.5);
+    		backLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*0.5);
+    		frontRightencR.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5)*0.5);
+    		backRightencL.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5)*0.5);
     	}
     	
     	else
     	{
-    		frontLeft.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(1));
-    		backLeft.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(1));
-    		frontRightencR.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5));
-    		backRightencL.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5));
+    		frontLeft.set(ControlMode.PercentOutput,Robot.m_oi.djoy.getRawAxis(1));
+    		backLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1));
+    		frontRightencR.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5));
+    		backRightencL.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(5));
     	}
     }
     
