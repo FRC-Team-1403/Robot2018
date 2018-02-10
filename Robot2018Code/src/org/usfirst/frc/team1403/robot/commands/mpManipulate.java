@@ -28,7 +28,10 @@ public class mpManipulate extends Command {
     	if(direction.toLowerCase().equals("eject"))
     	{
     		Robot.manip.elEject(speed);
-    		if(Robot.elevator.opticIntake.get()) { Robot.manip.groundEject(speed); }
+    		if(Robot.elevator.opticIntake.get()) 
+    		{ 
+    			Robot.manip.groundEject(speed); 
+    		}
     	}
     	
     	else

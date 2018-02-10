@@ -27,23 +27,30 @@ public class elMove extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	switch(spot) {
-    	case 3:
-    		direction = true;
-    		gate = Robot.elevator.opticMax;
-    		break;
-    	case 2: 
-    		if (Robot.elevator.opticMax.get()) { direction = false; }
-    		else { direction = true; }
-    		break;
-    	case 1: 
-    		direction = false; 
-    		gate = Robot.elevator.opticIntake;
-    		break; 
-    		}
+    	switch(spot)
+    	{
+    	case 3: direction = true; 
+    			gate = Robot.elevator.opticMax; 
+    			break;
+    	case 2: if (Robot.elevator.opticMax.get()) 
+    			{ 
+    				direction = false; 
+    			}
+    			else 
+    			{ 
+    				direction = true; 
+    			}
+    	break;
+    	case 1: direction = false; 
+    			gate = Robot.elevator.opticIntake;
+    			break; 
+    	}
     	
     	
-    	while (!gate.get()) { Robot.elevator.Move(direction); }
+    	while (!gate.get()) 
+    	{ 
+    		Robot.elevator.Move(direction); 
+    	}
     	
     }
 

@@ -29,12 +29,14 @@ public class dtDriveStraightGyro extends Command {
     protected void execute() {
     	double gyroPower = Robot.drivetrain.gyro.getAngle()*0.01;
     	
-    	if(distance>0.0) {
+    	if(distance>0.0) 
+    	{
     		Robot.drivetrain.setLeftRightPower(-(speed-gyroPower), -(speed+gyroPower)); 
-    		}
-    	else {
+    	}
+    	else 
+    	{
     		Robot.drivetrain.setLeftRightPower((speed+gyroPower), (speed-gyroPower)); 
-    		}
+    	}
     	
     }
 

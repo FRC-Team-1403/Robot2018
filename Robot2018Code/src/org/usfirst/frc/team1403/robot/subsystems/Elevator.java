@@ -30,11 +30,20 @@ public class Elevator extends Subsystem {
 
     public void Move(boolean direction) // false = down; true = up
     {
-    	if (direction) { elMotor.set(ControlMode.PercentOutput, 0.5); }
-    	else { elMotor.set(ControlMode.PercentOutput, -0.5); }
+    	if (direction) 
+    	{ 
+    		elMotor.set(ControlMode.PercentOutput, 0.5); 
+    	}
+    	else
+    	{ 
+    		elMotor.set(ControlMode.PercentOutput, -0.5); 
+    	}
     }
     
-    public void move(double position) { elMotor.set(ControlMode.PercentOutput, 0.5*position); }
+    public void move(double position) 
+    { 
+    	elMotor.set(ControlMode.PercentOutput, 0.5*position); 
+    }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

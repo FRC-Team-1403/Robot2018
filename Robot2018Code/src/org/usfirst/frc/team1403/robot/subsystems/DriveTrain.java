@@ -11,7 +11,8 @@ import org.usfirst.frc.team1403.robot.commands.dtJoyDrive;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends Subsystem 
+{
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -28,7 +29,10 @@ public class DriveTrain extends Subsystem {
     	gyro = new AnalogGyro(RobotMap.gyroSensor);
 	}
     
-    public void initDefaultCommand() { setDefaultCommand(new dtJoyDrive()); }
+    public void initDefaultCommand() 
+    { 
+    	setDefaultCommand(new dtJoyDrive()); 
+    }
     
     public void setLeftRightPower(double leftPower, double rightPower)
     {
@@ -71,9 +75,13 @@ public class DriveTrain extends Subsystem {
     	backRightencL.getSensorCollection().setQuadraturePosition(0, 0);
     }
     
-    public double getLeftPosition() { return -frontRightencR.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
-    public double getRightPosition() { return backRightencL.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
-
-
+    public double getLeftPosition() 
+    { 
+    	return -frontRightencR.getSensorCollection().getQuadraturePosition(); //* RobotMap.feetPerTick
+    } 
+    public double getRightPosition() 
+    { 
+    	return backRightencL.getSensorCollection().getQuadraturePosition(); //* RobotMap.feetPerTick
+    } 
+    
 }
-
