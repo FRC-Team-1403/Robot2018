@@ -25,6 +25,7 @@ public class Elevator extends Subsystem {
     	opticSwitch = new DigitalInput(RobotMap.opticSwitch);
     	opticIntake = new DigitalInput(RobotMap.opticIntake);
     	opticMax = new DigitalInput(RobotMap.opticMax);
+    	//infared = new AnalogInput(0);
     	elMotor = new TalonSRX(RobotMap.elevatorMotor);
     }
 

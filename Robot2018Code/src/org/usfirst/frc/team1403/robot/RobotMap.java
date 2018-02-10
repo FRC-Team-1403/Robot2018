@@ -28,8 +28,8 @@ public class RobotMap
 	//DriveTrain
 	public static int frontLeftMotor = 6;
 	public static int backLeftMotor = 7;
-	public static int frontRightMotor = 4; //has left encoder
-	public static int backRightMotor = 5; //has right encoder
+	public static int frontRightMotor = 1; //has left encoder
+	public static int backRightMotor = 2; //has right encoder
 
 	public static int gyroSensor = 0;
 	
@@ -37,7 +37,7 @@ public class RobotMap
 	public static int opticIntake = 0;
 	public static int opticSwitch = 1;
 	public static int opticMax = 2;
-	public static int elevatorMotor = 4;
+	public static int elevatorMotor = 5;
 	
 	//Manipulation
 	public static int inLeft = 0;

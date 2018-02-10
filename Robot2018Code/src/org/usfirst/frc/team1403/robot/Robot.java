@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot {
 		CameraServer.getInstance().startAutomaticCapture();
 		recorder = new Recorder(10000); //10000 = max arr size
 		drivetrain = new DriveTrain();
-		m_oi = new OI();
+	//	m_oi = new OI();
 		
 		numpaths = 0;
 		init();
@@ -71,10 +71,10 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		recorder.setCurrentWritefile(1);
-		recorder.setCurrentReadfile(0);
+	//	recorder.setCurrentWritefile(1);
+	/*	recorder.setCurrentReadfile(0);
 		Recorder.initWriter();
-		Recorder.initReader();
+		Recorder.initReader();*/
 	}
 
 	/**
