@@ -3,6 +3,7 @@ package org.usfirst.frc.team1403.robot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -17,6 +18,8 @@ import org.usfirst.frc.team1403.robot.subsystems.Elevator;
 import org.usfirst.frc.team1403.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team1403.robot.subsystems.Manipulation;
 
+import echo.Recorder;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -27,7 +30,12 @@ import org.usfirst.frc.team1403.robot.subsystems.Manipulation;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	private int numpaths;
+	private String path;
 	public static DriveTrain drivetrain;
+	public static Recorder recorder;
+	public static boolean record;
+	public static boolean store;
 	public static Manipulation manip;
 	public static Elevator elevator;
 	int chooserint;
@@ -37,6 +45,10 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	String pathChooser;
+	int writerChooser;
+	int readerChooser;
+	boolean executeChanges;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -45,14 +57,24 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit()
 	{
+		
 		CameraServer.getInstance().startAutomaticCapture();
+		recorder = new Recorder(10000); //10000 = max arr size
 		drivetrain = new DriveTrain();
+		m_oi = new OI();
+		
+		numpaths = 0;
+		init();
 		manip = new Manipulation();
 		elevator = new Elevator();
 		m_oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		recorder.setCurrentWritefile(1);
+		recorder.setCurrentReadfile(0);
+		Recorder.initWriter();
+		Recorder.initReader();
 	}
 
 	/**
@@ -81,6 +103,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() 
 	{
+		recorder.resetReadings();
+		recorder.storeReadings();
+		autonomousCommand = chooser.getSelected();
 		autonomousCommand = chooser.getSelected();
 
 		/*
@@ -111,6 +136,8 @@ public class Robot extends IterativeRobot {
 			}
 		}
 		
+		Scheduler.getInstance().run();
+		
 		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -121,6 +148,15 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		while(!recorder.checkTime()) {Timer.delay(0.001);}
+		if(recorder.hasNextLine()) {
+			DriveTrain.setSpeed(DriveTrain.frontLeft, recorder.getReading("DriveTrain L"));
+			DriveTrain.setSpeed(DriveTrain.frontRightencR, recorder.getReading("DriveTrain R"));
+			System.out.println("DT Index: " + recorder.nextReading() + "DT L: " + recorder.getReading("DriveTrain L") + "\tDT R: " + recorder.getReading("DriveTrain R"));
+		} else {
+			DriveTrain.setSpeed(DriveTrain.frontLeft, 0);
+			DriveTrain.setSpeed(DriveTrain.frontRightencR, 0);
+		}
 		Scheduler.getInstance().run();
 	}
 
@@ -143,6 +179,13 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Encoder Left", Robot.drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("Encoder Right", Robot.drivetrain.getRightPosition());
+		if(Recorder.isRecording) {
+			recorder.addReading("DriveTrain L", drivetrain.getRawAxisLeft);
+			recorder.addReading("DriveTrain R", drivetrain.getRawAxisRight);
+			recorder.initNextReading();
+		} else if (Recorder.isStoring()) {
+			recorder.storeWritings();
+		}
 	}
 
 	/**
@@ -150,5 +193,16 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+	}
+	public void init() {
+		//File Select Menu
+		path = new String("/home/lvuser/10.txt");
+		recorder.addFileSelect(numpaths, path);
+		SmartDashboard.putString(Integer.toString(numpaths), path);
+		++numpaths;
+		path = new String("/home/lvuser/0.txt");
+		recorder.addFileSelect(numpaths, path);
+		SmartDashboard.putString(Integer.toString(numpaths), path);
+		++numpaths;
 	}
 }
