@@ -67,9 +67,13 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() 
 	{
 		Scheduler.getInstance().run();
-		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) { chooserint++; SmartDashboard.putNumber("chooserint", chooserint%7); }
+		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) 
+		{ 
+			chooserint++; SmartDashboard.putNumber("chooserint", chooserint%7); 
+		}
 	
-		switch(chooserint%2) {
+		switch(chooserint%2) 
+		{
 		case 0: SmartDashboard.putString("Auto Selector", "Straight");break;
 		case 1: SmartDashboard.putString("Auto Selector", "Switch");break; 
 		}
@@ -96,8 +100,14 @@ public class Robot extends IterativeRobot {
 			case 0: autonomousCommand = new dtDriveTimeGyro(4, 0.6); break;
 			case 1:
 			{
-			if(gameData.charAt(0) == 'L') { autonomousCommand = new cgLeftSwitchAuto(); }
-			else { autonomousCommand = new cgRightSwitchAuto(); }
+			if(gameData.charAt(0) == 'L') 
+			{ 
+				autonomousCommand = new cgLeftSwitchAuto(); 
+			}
+			else 
+			{ 
+				autonomousCommand = new cgRightSwitchAuto(); 
+			}
 			}
 		}
 		
