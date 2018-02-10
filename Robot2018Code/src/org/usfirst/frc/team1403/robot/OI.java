@@ -9,6 +9,7 @@ package org.usfirst.frc.team1403.robot;
 
 import org.usfirst.frc.team1403.robot.commands.cgDownIntake;
 import org.usfirst.frc.team1403.robot.commands.dtAllStop;
+import org.usfirst.frc.team1403.robot.commands.dtResetEncoders;
 import org.usfirst.frc.team1403.robot.commands.dtTestMotors;
 import org.usfirst.frc.team1403.robot.commands.elMove;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
@@ -54,6 +55,8 @@ public class OI {
 
 
 	public OI() {
+		
+		aDjoy.whenPressed(new dtResetEncoders());
 		
 		lbOjoy.whileHeld(new cgDownIntake());
 		rbOjoy.whileHeld(new mpManipulate("Eject", 0.75));
