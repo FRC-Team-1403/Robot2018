@@ -41,14 +41,16 @@ public class DriveTrain extends Subsystem {
 
     public void drive()
     {
-    	if(Robot.m_oi.djoy.getRawButton(6)) {
+    	if(Robot.m_oi.djoy.getRawButton(6))
+    	{
     		frontLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*-0.5);
     		backLeft.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(1)*-0.5);
     		frontRightencR.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5)*0.5);
     		backRightencL.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5)*0.5);
     	}
     	
-    	else {
+    	else
+    	{
     		frontLeft.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(1));
     		backLeft.set(ControlMode.PercentOutput, -Robot.m_oi.djoy.getRawAxis(1));
     		frontRightencR.set(ControlMode.PercentOutput, Robot.m_oi.djoy.getRawAxis(5));

@@ -42,7 +42,7 @@ public class OI {
 	public Button backOjoy = new JoystickButton(ojoy,7);
 	public Button startOjoy =  new JoystickButton(ojoy, 8);
 	
-	public Joystick tjoy = new Joystick(1);
+	public Joystick tjoy = new Joystick(2);
 	public Button aTjoy = new JoystickButton(tjoy, 1);
 	public Button bTjoy = new JoystickButton(tjoy, 2);
 	public Button xTjoy = new JoystickButton(tjoy, 3);
