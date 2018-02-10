@@ -61,10 +61,10 @@ public class OI {
 		startOjoy.whenPressed(new elMove(2));
 		bOjoy.whileHeld(new dtAllStop());
 		
-		aTjoy.whileHeld(new dtTestMotors(1));
-		bTjoy.whileHeld(new dtTestMotors(2));
-		xTjoy.whileHeld(new dtTestMotors(3));
-		yTjoy.whileHeld(new dtTestMotors(4));
+		aTjoy.whileHeld(new dtTestMotors(4));
+		bTjoy.whileHeld(new dtTestMotors(5));
+		xTjoy.whileHeld(new dtTestMotors(6));
+		yTjoy.whileHeld(new dtTestMotors(7));
 
 
 	}
