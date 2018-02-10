@@ -22,7 +22,7 @@ public class Manipulation extends Subsystem {
 		inRight = new TalonSRX(RobotMap.inRight);
 		rlRight = new TalonSRX(RobotMap.rlRight);
 		rlLeft = new TalonSRX(RobotMap.rlLeft);
-		limitSwitch = new DigitalInput(RobotMap.limitSwitch);
+	
 	}
 	
 	public void elIntake(double speed) //for roller claw on elevator
