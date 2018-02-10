@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1403.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -44,6 +45,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit()
 	{
+		CameraServer.getInstance().startAutomaticCapture();
 		drivetrain = new DriveTrain();
 		manip = new Manipulation();
 		elevator = new Elevator();
@@ -89,9 +91,11 @@ public class Robot extends IterativeRobot {
 
 		autonomousCommand = new dtDriveTimeGyro(4, 0.6);
 		
-		switch(chooserint%2) {
-		case 0: autonomousCommand = new dtDriveTimeGyro(4, 0.6); break;
-		case 1: {
+		switch(chooserint%2)
+		{
+			case 0: autonomousCommand = new dtDriveTimeGyro(4, 0.6); break;
+			case 1:
+			{
 			if(gameData.charAt(0) == 'L') { autonomousCommand = new cgLeftSwitchAuto(); }
 			else { autonomousCommand = new cgRightSwitchAuto(); }
 			}

@@ -25,12 +25,14 @@ public class dtSturn90 extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (side.equals("Right") || side.equals("right") || side.equals("R") || side.equals("r")) {
+    	if (side.toLowerCase().equals("right")) 
+    	{ 
     		Robot.drivetrain.setLeftRightPower(0, 0.4); 
-    		}
-    	else {
+    	}
+    	else 
+    	{
     		Robot.drivetrain.setLeftRightPower(0.4, 0);
-    		}
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
