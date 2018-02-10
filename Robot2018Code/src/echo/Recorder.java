@@ -127,7 +127,8 @@ public class Recorder {
 			interpolateReadings((int)(currTime - this.prevTime));
 			return false;
 		} else {
-			this.prevTime = currTime;
+			//long timeDiff = currTime - this.prevTime;
+			this.prevTime += 20;//= currTime;
 			return true;
 		}
 	}
