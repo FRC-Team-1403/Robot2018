@@ -9,7 +9,9 @@ package org.usfirst.frc.team1403.robot;
 
 import org.usfirst.frc.team1403.robot.commands.cgDownIntake;
 import org.usfirst.frc.team1403.robot.commands.dtAllStop;
+import org.usfirst.frc.team1403.robot.commands.dtDriveWithGyro;
 import org.usfirst.frc.team1403.robot.commands.dtResetEncoders;
+import org.usfirst.frc.team1403.robot.commands.dtSturnJoy;
 import org.usfirst.frc.team1403.robot.commands.dtTestMotors;
 import org.usfirst.frc.team1403.robot.commands.elMove;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
@@ -57,6 +59,9 @@ public class OI {
 	public OI() {
 		
 		aDjoy.whenReleased(new dtResetEncoders());
+		bDjoy.whileHeld(new dtDriveWithGyro(0.5));
+		lbDjoy.whileHeld(new dtSturnJoy("Left"));
+		rbDjoy.whileHeld(new dtSturnJoy("Right"));
 		
 		lbOjoy.whileHeld(new cgDownIntake());
 		rbOjoy.whileHeld(new mpManipulate("Eject", 0.75));
