@@ -68,7 +68,7 @@ public class Robot extends IterativeRobot {
 		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) { chooserint++; SmartDashboard.putNumber("chooserint", chooserint%7); }
 	
 		switch(chooserint%2) {
-		case 0: SmartDashboard.putString("Auto Selector", "Straight");break;//Gucci gang
+		case 0: SmartDashboard.putString("Auto Selector", "Straight");break;
 		case 1: SmartDashboard.putString("Auto Selector", "Switch");break; 
 		}
 }
@@ -124,8 +124,11 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	@Override
-	public void teleopPeriodic() {
+	public void teleopPeriodic()
+	{
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Encoder Left", Robot.drivetrain.getLeftPosition());
+		SmartDashboard.putNumber("Encoder Right", Robot.drivetrain.getRightPosition());
 	}
 
 	/**
