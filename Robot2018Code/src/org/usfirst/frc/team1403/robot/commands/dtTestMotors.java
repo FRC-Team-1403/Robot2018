@@ -32,7 +32,15 @@ public class dtTestMotors extends Command {
     	case 7: { Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, -0.25); break; }
     	case 1: { Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0.25); break; }
     	case 2: { Robot.drivetrain.backRightencL.set(ControlMode.PercentOutput, 0.25); break; }
-    	case 5: { Robot.elevator.elMotor.set(ControlMode.PercentOutput, 0.25); break; }
+    	
+    	case 5: { Robot.elevator.elMotor.set(ControlMode.PercentOutput, 0.25); break; } //used to set elevator motor to one direction
+    	case 55: { Robot.elevator.elMotor.set(ControlMode.PercentOutput, 0); break; } //used to set elevator motor to other direction
+    	case 555: { Robot.elevator.elMotor.set(ControlMode.PercentOutput, -0.25); break; } //used to STOP elevator motor
+    	
+    	case 8: { Robot.manip.inLeft.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 9: { Robot.manip.inRight.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 10: { Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0.25); break; }
+    	case 11: { Robot.manip.rlRight.set(ControlMode.PercentOutput, 0.25); break; }
     	}
     }
 

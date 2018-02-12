@@ -54,6 +54,8 @@ public class OI {
 	public Button rbTjoy = new JoystickButton(tjoy, 6);
 	public Button backTjoy = new JoystickButton(tjoy,7);
 	public Button startTjoy =  new JoystickButton(tjoy, 8);
+	public Button leftTrigger = new JoystickButton(tjoy, 9);
+	public Button rightTrigger = new JoystickButton(tjoy, 9);
 
 
 	public OI() {
@@ -70,12 +72,26 @@ public class OI {
 		aOjoy.whenPressed(new elMove(3));
 		bOjoy.whileHeld(new dtAllStop());
 		
+		//TESTING CODE (with test joystick)
+		
+		//drivetrain motors
 		aTjoy.whileHeld(new dtTestMotors(1));
 		bTjoy.whileHeld(new dtTestMotors(2));
 		xTjoy.whileHeld(new dtTestMotors(6));
 		yTjoy.whileHeld(new dtTestMotors(7));
+		
+		//elevator motors
 		rbTjoy.whileHeld(new dtTestMotors(5));
-
+		lbTjoy.whileHeld(new dtTestMotors(55));
+		startTjoy.whenPressed(new dtTestMotors(555));
+		
+		//back intake motors
+		leftTrigger.whileHeld(new dtTestMotors(8));
+		leftTrigger.whileHeld(new dtTestMotors(9));
+		
+		//front roller motors
+		rightTrigger.whileHeld(new dtTestMotors(10));
+		rightTrigger.whileHeld(new dtTestMotors(11));
 
 	}
 }

@@ -40,11 +40,15 @@ public class RobotMap
 	public static int elevatorMotor = 5;
 	
 	//Manipulation
-	public static int inLeft = 0;
-	public static int inRight = 1;
-	public static int rlLeft = 2;
-	public static int rlRight = 3;
 	public static int limitSwitch = 1;
+	
+	//Front intake motors
+	public static int inLeft = 8;
+	public static int inRight = 9;
+	
+	//Back roller motors
+	public static int rlLeft = 10;
+	public static int rlRight = 11;
 	
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

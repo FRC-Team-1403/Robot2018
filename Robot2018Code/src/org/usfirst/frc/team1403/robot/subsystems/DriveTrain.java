@@ -17,10 +17,7 @@ public class DriveTrain extends Subsystem
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public static TalonSRX frontLeft;
-	public static TalonSRX backLeft;
-	public static TalonSRX frontRightencR;
-	public static TalonSRX backRightencL;
+    public  TalonSRX frontLeft, backLeft, frontRightencR, backRightencL;
 	public double getRawAxisLeft;
 	public double getRawAxisRight;
     public AnalogGyro gyro;
