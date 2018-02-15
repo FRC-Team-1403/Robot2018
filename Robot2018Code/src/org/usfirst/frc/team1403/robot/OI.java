@@ -14,6 +14,10 @@ import org.usfirst.frc.team1403.robot.commands.dtResetEncoders;
 import org.usfirst.frc.team1403.robot.commands.dtSturnJoy;
 import org.usfirst.frc.team1403.robot.commands.dtTestMotors;
 import org.usfirst.frc.team1403.robot.commands.elMove;
+import org.usfirst.frc.team1403.robot.commands.mpEject;
+import org.usfirst.frc.team1403.robot.commands.mpEjectFullSpeed;
+import org.usfirst.frc.team1403.robot.commands.mpIntake;
+import org.usfirst.frc.team1403.robot.commands.mpIntakeFullSpeed;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -65,12 +69,17 @@ public class OI {
 		lbDjoy.whileHeld(new dtSturnJoy("Left"));
 		rbDjoy.whileHeld(new dtSturnJoy("Right"));
 		
-		lbOjoy.whileHeld(new cgDownIntake());
-		rbOjoy.whileHeld(new mpManipulate("Eject", 0.75));
+		//lbOjoy.whileHeld(new cgDownIntake());
+		//lbOjoy.whileHeld(new mpManipulate("Intake", 0.6));
+		lbOjoy.whileHeld(new mpIntake());
+		//rbOjoy.whileHeld(new mpManipulate("Eject", 0.6));
+		rbOjoy.whileHeld(new mpEject());
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
 		aOjoy.whenPressed(new elMove(3));
 		bOjoy.whileHeld(new dtAllStop());
+		xOjoy.whileHeld(new mpIntakeFullSpeed());
+		yOjoy.whileHeld(new mpEjectFullSpeed());
 		
 		//TESTING CODE (with test joystick)
 		

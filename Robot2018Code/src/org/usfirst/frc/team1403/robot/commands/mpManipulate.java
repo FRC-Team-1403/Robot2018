@@ -35,6 +35,15 @@ public class mpManipulate extends Command {
     			Robot.manip.groundEject(speed); 
     		}
     	}
+    	else if(direction.toLowerCase().equals("intake"))
+    	{
+    		Robot.manip.elIntake(-speed);
+    		if(Robot.elevator.opticIntake.get()) 
+    		{ 
+    			Robot.manip.groundIntake(-speed); 
+    		}
+    	}
+    	
     	
     	else
     	{
@@ -55,13 +64,14 @@ public class mpManipulate extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
+    	
 
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
     }
 }

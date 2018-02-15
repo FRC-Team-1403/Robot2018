@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class mpTestManip extends Command {
+public class mpIntake extends Command {
 
-    public mpTestManip() {
+    public mpIntake() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.manip);
     }
@@ -22,12 +22,8 @@ public class mpTestManip extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.manip.inLeft.set(ControlMode.PercentOutput, -Robot.m_oi.tjoy.getRawAxis(1));
-    	Robot.manip.inRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
-    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
-    	Robot.manip.rlRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
-    	
-
+    	Robot.manip.elIntake(.6);
+    	Robot.manip.groundIntake(.6);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,10 +33,18 @@ public class mpTestManip extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.inRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.inLeft.set(ControlMode.PercentOutput, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.inRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.inLeft.set(ControlMode.PercentOutput, 0);
     }
 }
