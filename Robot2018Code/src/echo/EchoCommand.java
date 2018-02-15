@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class EchoCommand extends Command {
 	
-	protected double value;
+protected double value;
 	
     public EchoCommand(double value) {
     	this.value = value;

@@ -19,6 +19,9 @@ import org.usfirst.frc.team1403.robot.commands.mpEjectFullSpeed;
 import org.usfirst.frc.team1403.robot.commands.mpIntake;
 import org.usfirst.frc.team1403.robot.commands.mpIntakeFullSpeed;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
+
+import echo.EchoOff;
+import echo.EchoOn;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -68,6 +71,8 @@ public class OI {
 		bDjoy.whileHeld(new dtDriveWithGyro(0.5));
 		lbDjoy.whileHeld(new dtSturnJoy("Left"));
 		rbDjoy.whileHeld(new dtSturnJoy("Right"));
+		backDjoy.whileHeld(new EchoOn());
+		startDjoy.whileHeld(new EchoOff());
 		
 		//lbOjoy.whileHeld(new cgDownIntake());
 		//lbOjoy.whileHeld(new mpManipulate("Intake", 0.6));

@@ -10,6 +10,7 @@ import java.util.Map;
 public class Recorder {
 	private final int RMAX; //20 ms delay * 50 ms in 1 second * 15 seconds
 	private int iteration;
+	//private long timeStamp; 
 	private long prevTime;
 	private Recording[] sequencedReadings;
 	public static boolean isRecording;
@@ -23,6 +24,7 @@ public class Recorder {
 	
 	public Recorder(int arrsize) {
 		this.RMAX = arrsize;
+		//this.timeStamp = 0;
 		this.iteration = 0;
 		this.prevTime = 0;
 		Recorder.isRecording = false;
@@ -127,7 +129,6 @@ public class Recorder {
 			interpolateReadings((int)(currTime - this.prevTime));
 			return false;
 		} else {
-			//long timeDiff = currTime - this.prevTime;
 			this.prevTime += 20;//= currTime;
 			return true;
 		}

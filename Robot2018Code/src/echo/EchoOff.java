@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class EchoOff extends Command {
 	
-	public EchoOff() {
+public EchoOff() {
 		
 	}
 
