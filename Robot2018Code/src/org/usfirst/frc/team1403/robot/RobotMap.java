@@ -26,9 +26,9 @@ public class RobotMap
 	public static double inchesPerTick1024 = 0.0122718463;
 	
 	//DriveTrain
-	public static int frontLeftMotor = 6;
-	public static int backLeftMotor = 7;
-	public static int frontRightMotor = 1; //has left encoder
+	public static int frontLeftMotor = 9;
+	public static int backLeftMotor = 5;
+	public static int frontRightMotor = 3; //has left encoder
 	public static int backRightMotor = 2; //has right encoder
 
 	public static int gyroSensor = 0;
@@ -37,17 +37,17 @@ public class RobotMap
 	public static int opticIntake = 0;
 	public static int opticSwitch = 1;
 	public static int opticMax = 2;
-	public static int elevatorMotor = 5;
+	public static int elevatorMotor = 7;
 	
 	//Manipulation
 	public static int limitSwitch = 1;
 	
 	//Front intake motors
-	public static int inLeft = 8;
-	public static int inRight = 9;
+	public static int inLeft = 1;
+	public static int inRight = 10;
 	
 	//Back roller motors
-	public static int rlLeft = 10;
+	public static int rlLeft = 4;
 	public static int rlRight = 11;
 	
 	// If you are using multiple modules, make sure to define both the port

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1403.robot.subsystems;
 
 import org.usfirst.frc.team1403.robot.RobotMap;
+import org.usfirst.frc.team1403.robot.commands.mpTestManip;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -14,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Manipulation extends Subsystem {
 
     public TalonSRX inLeft, inRight, rlRight, rlLeft;
-    public DigitalInput limitSwitch;
+  //  public DigitalInput limitSwitch;
 
 	public Manipulation()
 	{
@@ -51,7 +52,7 @@ public class Manipulation extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new mpTestManip());
     }
 }
 

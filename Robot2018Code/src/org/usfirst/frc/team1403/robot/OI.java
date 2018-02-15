@@ -74,24 +74,12 @@ public class OI {
 		
 		//TESTING CODE (with test joystick)
 		
-		//drivetrain motors
+		
 		aTjoy.whileHeld(new dtTestMotors(1));
-		bTjoy.whileHeld(new dtTestMotors(2));
-		xTjoy.whileHeld(new dtTestMotors(6));
-		yTjoy.whileHeld(new dtTestMotors(7));
-		
-		//elevator motors
-		rbTjoy.whileHeld(new dtTestMotors(5));
-		lbTjoy.whileHeld(new dtTestMotors(55));
-		startTjoy.whenPressed(new dtTestMotors(555));
-		
-		//back intake motors
-		leftTrigger.whileHeld(new dtTestMotors(8));
-		leftTrigger.whileHeld(new dtTestMotors(9));
-		
-		//front roller motors
-		rightTrigger.whileHeld(new dtTestMotors(10));
-		rightTrigger.whileHeld(new dtTestMotors(11));
+		bTjoy.whileHeld(new dtTestMotors(10));
+		xTjoy.whileHeld(new dtTestMotors(4));
+		yTjoy.whileHeld(new dtTestMotors(11));
+
 
 	}
 }

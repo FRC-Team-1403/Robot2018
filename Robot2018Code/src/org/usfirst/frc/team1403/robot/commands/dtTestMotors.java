@@ -28,18 +28,14 @@ public class dtTestMotors extends Command {
     {
     	switch(motor)
     	{
-    	case 6: { Robot.drivetrain.frontLeft.set(ControlMode.PercentOutput, -0.25); break; }
-    	case 7: { Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, -0.25); break; }
-    	case 1: { Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0.25); break; }
+    	case 9: { Robot.drivetrain.frontLeft.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 5: { Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 3: { Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0.25); break; }
     	case 2: { Robot.drivetrain.backRightencL.set(ControlMode.PercentOutput, 0.25); break; }
     	
-    	case 5: { Robot.elevator.elMotor.set(ControlMode.PercentOutput, 0.25); break; } //used to set elevator motor to one direction
-    	case 55: { Robot.elevator.elMotor.set(ControlMode.PercentOutput, 0); break; } //used to set elevator motor to other direction
-    	case 555: { Robot.elevator.elMotor.set(ControlMode.PercentOutput, -0.25); break; } //used to STOP elevator motor
-    	
-    	case 8: { Robot.manip.inLeft.set(ControlMode.PercentOutput, -0.25); break; }
-    	case 9: { Robot.manip.inRight.set(ControlMode.PercentOutput, -0.25); break; }
-    	case 10: { Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0.25); break; }
+    	case 1: { Robot.manip.inLeft.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 10: { Robot.manip.inRight.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 4: { Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0.25); break; }
     	case 11: { Robot.manip.rlRight.set(ControlMode.PercentOutput, 0.25); break; }
     	}
     }
@@ -51,10 +47,27 @@ public class dtTestMotors extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.drivetrain.frontLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0);
+    	Robot.drivetrain.backRightencL.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.inLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.inRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.drivetrain.frontLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0);
+    	Robot.drivetrain.backRightencL.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.inLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.inRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
     }
 }
