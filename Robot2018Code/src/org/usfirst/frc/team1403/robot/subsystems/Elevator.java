@@ -46,6 +46,10 @@ public class Elevator extends Subsystem {
     		Elevator.elMotor.set(ControlMode.PercentOutput, -getRawAxisRight); //If you want equal make it .69* the joy value
     	}
     }
+    public static void setSpeed(TalonSRX talon, double speed)
+    {
+    	talon.set(ControlMode.PercentOutput, speed);
+    }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

@@ -153,6 +153,15 @@ public class Robot extends IterativeRobot {
 		if(recorder.hasNextLine()) {
 			DriveTrain.setSpeed(DriveTrain.frontLeft, recorder.getReading("DriveTrain L"));
 			DriveTrain.setSpeed(DriveTrain.frontRightencR, recorder.getReading("DriveTrain R"));
+			Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
+			Manipulation.setSpeed(Manipulation.inLeft,recorder.getReading("Intake Left Motor"));
+			Manipulation.setSpeed(Manipulation.inRight, recorder.getReading("Intake Right Motor"));
+			Manipulation.setSpeed(Manipulation.rlLeft, recorder.getReading("Intake Roller Left Motor"));
+			Manipulation.setSpeed(Manipulation.rlRight, recorder.getReading("Intaker Roller Right Motor"));
+			Manipulation.setSpeed(Manipulation.inLeft,recorder.getReading("Eject Left Motor"));
+			Manipulation.setSpeed(Manipulation.inRight, recorder.getReading("Eject Right Motor"));
+			Manipulation.setSpeed(Manipulation.rlLeft, recorder.getReading("Eject Roller Left Motor"));
+			Manipulation.setSpeed(Manipulation.rlRight, recorder.getReading("Eject Roller Right Motor"));
 			System.out.println("DT Index: " + recorder.nextReading() + "DT L: " + recorder.getReading("DriveTrain L") + "\tDT R: " + recorder.getReading("DriveTrain R"));
 		} else {
 			DriveTrain.setSpeed(DriveTrain.frontLeft, 0);

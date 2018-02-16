@@ -11,6 +11,11 @@ public class EchoReader {
 	
 	public EchoReader() {
 	}
+	
+	/**
+	  * Initialize the Reader Stream (For the Serialized Array)
+	  * Parameters: FileInputStream from the Recorder Class
+	  */
 	public void initReader(FileInputStream file) {
 		try {
 			fileReader = new ObjectInputStream(file);
@@ -19,6 +24,11 @@ public class EchoReader {
 		}
 		System.out.println("ObjectInputStream obj finished init");
 	}
+	
+	/**
+	  * Unserialize array from previously recorded file and convert it back into an array of Recording(s)
+	  * Return Type: Recording[]
+	  */
 	public Recording[] getArrayFromFile() { //return null if nonexistent
 		try {
 			this.recordingArr = (Recording[]) fileReader.readObject();
@@ -30,9 +40,17 @@ public class EchoReader {
 		
 		return this.recordingArr;
 	}
+	
+	/**
+	  * Return the temporarily stored array from the EchoReader class
+	  */
 	public Recording[] returnArrayFromFile() {
 		return this.recordingArr;
 	}
+	
+	/**
+	  * Reset the Reader Stream object
+	  */
 	public void destroy(){
 		try {
 			fileReader.close();

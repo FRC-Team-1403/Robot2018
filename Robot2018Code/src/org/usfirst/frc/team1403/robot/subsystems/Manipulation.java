@@ -14,7 +14,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Manipulation extends Subsystem {
 
-    public TalonSRX inLeft, inRight, rlRight, rlLeft;
+    public static TalonSRX inLeft;
+	public static TalonSRX inRight;
+	public static TalonSRX rlRight;
+	public static TalonSRX rlLeft;
   //  public DigitalInput limitSwitch;
     public double inLeftSpeede, inRightSpeede, rlRightSpeede, rlLeftSpeede, inLeftSpeedi, inRightSpeedi, rlRightSpeedi, rlLeftSpeedi;
 	public Manipulation()
@@ -62,6 +65,10 @@ public class Manipulation extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new mpTestManip());
+    }
+    public static void setSpeed(TalonSRX talon, double speed)
+    {
+    	talon.set(ControlMode.PercentOutput, speed);
     }
 }
 
