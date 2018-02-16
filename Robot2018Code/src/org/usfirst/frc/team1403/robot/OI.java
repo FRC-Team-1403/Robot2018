@@ -15,9 +15,7 @@ import org.usfirst.frc.team1403.robot.commands.dtSturnJoy;
 import org.usfirst.frc.team1403.robot.commands.dtTestMotors;
 import org.usfirst.frc.team1403.robot.commands.elMove;
 import org.usfirst.frc.team1403.robot.commands.mpEject;
-import org.usfirst.frc.team1403.robot.commands.mpEjectFullSpeed;
 import org.usfirst.frc.team1403.robot.commands.mpIntake;
-import org.usfirst.frc.team1403.robot.commands.mpIntakeFullSpeed;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
 
 import echo.EchoOff;
@@ -83,8 +81,6 @@ public class OI {
 		startOjoy.whenPressed(new elMove(2));
 		aOjoy.whenPressed(new elMove(3));
 		bOjoy.whileHeld(new dtAllStop());
-		xOjoy.whileHeld(new mpIntakeFullSpeed());
-		yOjoy.whileHeld(new mpEjectFullSpeed());
 		
 		//TESTING CODE (with test joystick)
 		

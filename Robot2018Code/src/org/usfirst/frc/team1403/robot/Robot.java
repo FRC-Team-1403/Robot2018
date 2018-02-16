@@ -61,7 +61,6 @@ public class Robot extends IterativeRobot {
 		CameraServer.getInstance().startAutomaticCapture();
 		recorder = new Recorder(10000); //10000 = max arr size
 		drivetrain = new DriveTrain();
-		m_oi = new OI();
 		
 		numpaths = 0;
 		init();
@@ -184,6 +183,15 @@ public class Robot extends IterativeRobot {
 		if(Recorder.isRecording) {
 			recorder.addReading("DriveTrain L", drivetrain.getRawAxisLeft);
 			recorder.addReading("DriveTrain R", drivetrain.getRawAxisRight);
+			recorder.addReading("Elevator", elevator.getRawAxisRight);
+			recorder.addReading("Intake Left Motor", manip.inLeftSpeedi);
+			recorder.addReading("Intake Right Motor", manip.inRightSpeedi);
+			recorder.addReading("Eject Left Motor", manip.inLeftSpeede);
+			recorder.addReading("Eject Right Motor", manip.inLeftSpeede);
+			recorder.addReading("Intake Roller Left Motor", manip.rlLeftSpeedi);
+			recorder.addReading("Intake Roller Right Motor", manip.rlRightSpeedi);
+			recorder.addReading("Eject Roller Left Motor", manip.rlLeftSpeede);
+			recorder.addReading("Eject Roller Right Motor", manip.rlLeftSpeede);
 			recorder.initNextReading();
 		} else if (Recorder.isStoring()) {
 			recorder.storeWritings();
@@ -198,11 +206,11 @@ public class Robot extends IterativeRobot {
 	}
 	public void init() {
 		//File Select Menu
-		path = new String("/home/lvuser/10.txt");
+		path = new String("/home/lvuser/0.txt");
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
-		path = new String("/home/lvuser/0.txt");
+		path = new String("/home/lvuser/10.txt");
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;

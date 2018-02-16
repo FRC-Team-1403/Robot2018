@@ -22,8 +22,8 @@ public class mpEject extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.manip.elEject(.75);
-    	Robot.manip.groundEject(.75);
+    	Robot.manip.elEject();
+    	Robot.manip.groundEject();
     }
 
     // Make this return true when this Command no longer needs to run execute()
