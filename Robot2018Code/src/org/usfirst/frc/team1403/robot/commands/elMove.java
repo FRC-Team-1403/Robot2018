@@ -42,17 +42,15 @@ public class elMove extends Command {
     	}
     	
     	
-    	while (!gate.get()) 
-    	{ 
-    		Robot.elevator.Move(direction); 
-    	}
+    	if (gate.get()) { Robot.elevator.Move(direction); }
+    	else { Robot.elevator.elMotor.set(ControlMode.PercentOutput, 0); }
     	
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return gate.get();
+        return !gate.get();
     }
 
     // Called once after isFinished returns true

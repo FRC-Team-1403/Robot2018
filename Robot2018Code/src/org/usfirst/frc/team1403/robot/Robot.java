@@ -189,8 +189,8 @@ public class Robot extends IterativeRobot {
 	{
 		Scheduler.getInstance().run();
 		
-		SmartDashboard.putBoolean("Top Optical Gate", Robot.elevator.opticSwitch.get());
-		SmartDashboard.putBoolean("Bottom Optical Gate", Robot.elevator.opticIntake.get());
+		SmartDashboard.putBoolean("Top Optical Gate", !Robot.elevator.opticSwitch.get());
+		SmartDashboard.putBoolean("Bottom Optical Gate", !Robot.elevator.opticIntake.get());
 		SmartDashboard.putBoolean("Intake Limit Switch", Robot.manip.limitSwitch.get());
 		SmartDashboard.putNumber("Encoder Left", Robot.drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("Encoder Right", Robot.drivetrain.getRightPosition());
