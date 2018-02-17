@@ -29,18 +29,9 @@ public class elMove extends Command {
     	
     	switch(spot)
     	{
-    	case 3: direction = true; 
-    			gate = Robot.elevator.opticMax; 
+    	case 2: direction = true; 
+    			gate = Robot.elevator.opticSwitch; 
     			break;
-    	case 2: if (Robot.elevator.opticMax.get()) 
-    			{ 
-    				direction = false; 
-    			}
-    			else 
-    			{ 
-    				direction = true; 
-    			}
-    	break;
     	case 1: direction = false; 
     			gate = Robot.elevator.opticIntake;
     			break; 

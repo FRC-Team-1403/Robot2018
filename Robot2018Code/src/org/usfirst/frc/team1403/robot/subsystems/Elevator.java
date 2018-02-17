@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Elevator extends Subsystem {
 
-    public DigitalInput  opticSwitch, opticIntake, opticMax;
+    public DigitalInput opticSwitch, opticIntake;
     public AnalogInput infrared;
     public static TalonSRX elMotor;
 	public double getRawAxisRight;
@@ -27,7 +27,7 @@ public class Elevator extends Subsystem {
     {
     	opticSwitch = new DigitalInput(RobotMap.opticSwitch);
     	opticIntake = new DigitalInput(RobotMap.opticIntake);
-    	opticMax = new DigitalInput(RobotMap.opticMax);
+
     	getRawAxisRight = 0;
     	//infared = new AnalogInput(0);
     	elMotor = new TalonSRX(RobotMap.elevatorMotor);
@@ -35,15 +35,15 @@ public class Elevator extends Subsystem {
 
     public void Move(boolean direction) // false = down; true = up
     {
-    	if (direction) { elMotor.set(ControlMode.PercentOutput, 0.5); }
-    	else { elMotor.set(ControlMode.PercentOutput, -0.5); }
+    	if (direction) { elMotor.set(ControlMode.PercentOutput, -0.1); }
+    	else { elMotor.set(ControlMode.PercentOutput, 0.1); }
     }
     
     public void move() 
     { 
     	if(!RobotState.isAutonomous()) {
         	getRawAxisRight = -Robot.m_oi.ojoy.getRawAxis(5);
-    		Elevator.elMotor.set(ControlMode.PercentOutput, -getRawAxisRight); //If you want equal make it .69* the joy value
+    		Elevator.elMotor.set(ControlMode.PercentOutput, -getRawAxisRight); 
     	}
     }
     public static void setSpeed(TalonSRX talon, double speed)

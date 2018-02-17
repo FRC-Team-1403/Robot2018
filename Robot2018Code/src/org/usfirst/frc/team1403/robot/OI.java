@@ -79,7 +79,6 @@ public class OI {
 		rbOjoy.whileHeld(new mpEject());
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
-		aOjoy.whenPressed(new elMove(3));
 		bOjoy.whileHeld(new dtAllStop());
 		
 		//TESTING CODE (with test joystick)

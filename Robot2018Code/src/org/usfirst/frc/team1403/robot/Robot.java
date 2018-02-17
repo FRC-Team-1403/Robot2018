@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot {
 		CameraServer.getInstance().startAutomaticCapture();
 		recorder = new Recorder(10000); //10000 = max arr size
 		drivetrain = new DriveTrain();
-		
+		//SmartDashboard.putBoolean("Limit Switch", false);
 		numpaths = 0;
 		init();
 		manip = new Manipulation();
@@ -162,7 +162,7 @@ public class Robot extends IterativeRobot {
 			Manipulation.setSpeed(Manipulation.inRight, recorder.getReading("Eject Right Motor"));
 			Manipulation.setSpeed(Manipulation.rlLeft, recorder.getReading("Eject Roller Left Motor"));
 			Manipulation.setSpeed(Manipulation.rlRight, recorder.getReading("Eject Roller Right Motor"));
-			System.out.println("DT Index: " + recorder.nextReading() + "DT L: " + recorder.getReading("DriveTrain L") + "\tDT R: " + recorder.getReading("DriveTrain R"));
+			recorder.nextReading();
 		} else {
 			DriveTrain.setSpeed(DriveTrain.frontLeft, 0);
 			DriveTrain.setSpeed(DriveTrain.frontRightencR, 0);
@@ -178,6 +178,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
 	}
 
 	/**
@@ -187,6 +188,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic()
 	{
 		Scheduler.getInstance().run();
+		SmartDashboard.putBoolean("Limit Switch", !Robot.elevator.opticSwitch.get());
+		SmartDashboard.putBoolean("Limit Intake", !Robot.elevator.opticIntake.get());
 		SmartDashboard.putNumber("Encoder Left", Robot.drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("Encoder Right", Robot.drivetrain.getRightPosition());
 		if(Recorder.isRecording) {

@@ -36,7 +36,6 @@ public class RobotMap
 	//Elevator
 	public static int opticIntake = 0;
 	public static int opticSwitch = 1;
-	public static int opticMax = 2;
 	public static int elevatorMotor = 7;
 	
 	//Manipulation
