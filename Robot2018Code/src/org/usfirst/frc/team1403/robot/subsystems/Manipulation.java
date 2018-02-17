@@ -41,13 +41,13 @@ public class Manipulation extends Subsystem {
 	public void elIntake() //for roller claw on elevator
 	{
 		rlLeft.set(ControlMode.PercentOutput, rlLeftSpeedi);
-		rlRight.set(ControlMode.PercentOutput, -rlRightSpeedi);
+		rlRight.set(ControlMode.PercentOutput, rlRightSpeedi);
 	}
 	
 	public void elEject() //for roller claw on elevator
 	{
 		rlLeft.set(ControlMode.PercentOutput, -rlLeftSpeede);
-		rlRight.set(ControlMode.PercentOutput, rlRightSpeede);
+		rlRight.set(ControlMode.PercentOutput, -rlRightSpeede);
 	}
 	
 	public void groundIntake() //for ground intake
