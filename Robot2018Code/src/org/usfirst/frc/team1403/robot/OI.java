@@ -14,7 +14,12 @@ import org.usfirst.frc.team1403.robot.commands.dtResetEncoders;
 import org.usfirst.frc.team1403.robot.commands.dtSturnJoy;
 import org.usfirst.frc.team1403.robot.commands.dtTestMotors;
 import org.usfirst.frc.team1403.robot.commands.elMove;
+import org.usfirst.frc.team1403.robot.commands.mpEject;
+import org.usfirst.frc.team1403.robot.commands.mpIntake;
 import org.usfirst.frc.team1403.robot.commands.mpManipulate;
+
+import echo.EchoOff;
+import echo.EchoOn;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -64,9 +69,14 @@ public class OI {
 		bDjoy.whileHeld(new dtDriveWithGyro(0.5));
 		lbDjoy.whileHeld(new dtSturnJoy("Left"));
 		rbDjoy.whileHeld(new dtSturnJoy("Right"));
+		backDjoy.whileHeld(new EchoOn());
+		startDjoy.whileHeld(new EchoOff());
 		
-		lbOjoy.whileHeld(new cgDownIntake());
-		rbOjoy.whileHeld(new mpManipulate("Eject", 0.75));
+		//lbOjoy.whileHeld(new cgDownIntake());
+		//lbOjoy.whileHeld(new mpManipulate("Intake", 0.6));
+		lbOjoy.whileHeld(new mpIntake());
+		//rbOjoy.whileHeld(new mpManipulate("Eject", 0.6));
+		rbOjoy.whileHeld(new mpEject());
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
 		aOjoy.whenPressed(new elMove(3));
@@ -74,24 +84,12 @@ public class OI {
 		
 		//TESTING CODE (with test joystick)
 		
-		//drivetrain motors
+		
 		aTjoy.whileHeld(new dtTestMotors(1));
-		bTjoy.whileHeld(new dtTestMotors(2));
-		xTjoy.whileHeld(new dtTestMotors(6));
-		yTjoy.whileHeld(new dtTestMotors(7));
-		
-		//elevator motors
-		rbTjoy.whileHeld(new dtTestMotors(5));
-		lbTjoy.whileHeld(new dtTestMotors(55));
-		startTjoy.whenPressed(new dtTestMotors(555));
-		
-		//back intake motors
-		leftTrigger.whileHeld(new dtTestMotors(8));
-		leftTrigger.whileHeld(new dtTestMotors(9));
-		
-		//front roller motors
-		rightTrigger.whileHeld(new dtTestMotors(10));
-		rightTrigger.whileHeld(new dtTestMotors(11));
+		bTjoy.whileHeld(new dtTestMotors(10));
+		xTjoy.whileHeld(new dtTestMotors(4));
+		yTjoy.whileHeld(new dtTestMotors(11));
+
 
 	}
 }

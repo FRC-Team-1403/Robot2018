@@ -1,18 +1,19 @@
-package echo;
+package org.usfirst.frc.team1403.robot.commands;
+
+import org.usfirst.frc.team1403.robot.Robot;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class EchoCommand extends Command {
-	
-	protected double value;
-	
-    public EchoCommand(double value) {
-    	this.value = value;
+public class mpTestManip extends Command {
+
+    public mpTestManip() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.manip);
     }
 
     // Called just before this Command runs the first time
@@ -21,6 +22,12 @@ public class EchoCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.manip.inLeft.set(ControlMode.PercentOutput, -Robot.m_oi.tjoy.getRawAxis(1));
+    	Robot.manip.inRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
+    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
+    	Robot.manip.rlRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
+    	
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,11 +38,7 @@ public class EchoCommand extends Command {
     // Called once after isFinished returns true
     protected void end() {
     }
-    
-    protected void setValue(double value) {
-    	
-    }
-    
+
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {

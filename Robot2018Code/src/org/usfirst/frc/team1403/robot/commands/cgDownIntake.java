@@ -10,7 +10,7 @@ public class cgDownIntake extends CommandGroup {
     public cgDownIntake() {
         // Add Commands here:
       addSequential(new elMove(1));
-      addSequential(new mpManipulate("Intake", 0.75));
+      addSequential(new mpIntake());
 
         //      addSequential(new Command2());
         // these will run in order.

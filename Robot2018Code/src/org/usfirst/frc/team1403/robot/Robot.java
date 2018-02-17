@@ -61,7 +61,6 @@ public class Robot extends IterativeRobot {
 		CameraServer.getInstance().startAutomaticCapture();
 		recorder = new Recorder(10000); //10000 = max arr size
 		drivetrain = new DriveTrain();
-	//	m_oi = new OI();
 		
 		numpaths = 0;
 		init();
@@ -71,10 +70,10 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-	//	recorder.setCurrentWritefile(1);
-	/*	recorder.setCurrentReadfile(0);
+		recorder.setCurrentWritefile(1);
+		recorder.setCurrentReadfile(0);
 		Recorder.initWriter();
-		Recorder.initReader();*/
+		Recorder.initReader();
 	}
 
 	/**
@@ -88,7 +87,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() 
 	{
-		Scheduler.getInstance().run();
+		
 		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) 
 		{ 
 			chooserint++; SmartDashboard.putNumber("chooserint", chooserint%7); 
@@ -99,6 +98,8 @@ public class Robot extends IterativeRobot {
 		case 0: SmartDashboard.putString("Auto Selector", "Straight");break;
 		case 1: SmartDashboard.putString("Auto Selector", "Switch");break; 
 		}
+		Scheduler.getInstance().run();
+
 }
 	@Override
 	public void autonomousInit() 
@@ -152,6 +153,15 @@ public class Robot extends IterativeRobot {
 		if(recorder.hasNextLine()) {
 			DriveTrain.setSpeed(DriveTrain.frontLeft, recorder.getReading("DriveTrain L"));
 			DriveTrain.setSpeed(DriveTrain.frontRightencR, recorder.getReading("DriveTrain R"));
+			Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
+			Manipulation.setSpeed(Manipulation.inLeft,recorder.getReading("Intake Left Motor"));
+			Manipulation.setSpeed(Manipulation.inRight, recorder.getReading("Intake Right Motor"));
+			Manipulation.setSpeed(Manipulation.rlLeft, recorder.getReading("Intake Roller Left Motor"));
+			Manipulation.setSpeed(Manipulation.rlRight, recorder.getReading("Intaker Roller Right Motor"));
+			Manipulation.setSpeed(Manipulation.inLeft,recorder.getReading("Eject Left Motor"));
+			Manipulation.setSpeed(Manipulation.inRight, recorder.getReading("Eject Right Motor"));
+			Manipulation.setSpeed(Manipulation.rlLeft, recorder.getReading("Eject Roller Left Motor"));
+			Manipulation.setSpeed(Manipulation.rlRight, recorder.getReading("Eject Roller Right Motor"));
 			System.out.println("DT Index: " + recorder.nextReading() + "DT L: " + recorder.getReading("DriveTrain L") + "\tDT R: " + recorder.getReading("DriveTrain R"));
 		} else {
 			DriveTrain.setSpeed(DriveTrain.frontLeft, 0);
@@ -182,6 +192,15 @@ public class Robot extends IterativeRobot {
 		if(Recorder.isRecording) {
 			recorder.addReading("DriveTrain L", drivetrain.getRawAxisLeft);
 			recorder.addReading("DriveTrain R", drivetrain.getRawAxisRight);
+			recorder.addReading("Elevator", elevator.getRawAxisRight);
+			recorder.addReading("Intake Left Motor", manip.inLeftSpeedi);
+			recorder.addReading("Intake Right Motor", manip.inRightSpeedi);
+			recorder.addReading("Eject Left Motor", manip.inLeftSpeede);
+			recorder.addReading("Eject Right Motor", manip.inLeftSpeede);
+			recorder.addReading("Intake Roller Left Motor", manip.rlLeftSpeedi);
+			recorder.addReading("Intake Roller Right Motor", manip.rlRightSpeedi);
+			recorder.addReading("Eject Roller Left Motor", manip.rlLeftSpeede);
+			recorder.addReading("Eject Roller Right Motor", manip.rlLeftSpeede);
 			recorder.initNextReading();
 		} else if (Recorder.isStoring()) {
 			recorder.storeWritings();
@@ -196,11 +215,11 @@ public class Robot extends IterativeRobot {
 	}
 	public void init() {
 		//File Select Menu
-		path = new String("/home/lvuser/10.txt");
+		path = new String("/home/lvuser/0.txt");
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
-		path = new String("/home/lvuser/0.txt");
+		path = new String("/home/lvuser/10.txt");
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;

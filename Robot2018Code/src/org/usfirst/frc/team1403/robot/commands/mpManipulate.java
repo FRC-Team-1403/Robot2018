@@ -2,6 +2,8 @@ package org.usfirst.frc.team1403.robot.commands;
 
 import org.usfirst.frc.team1403.robot.Robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -27,22 +29,31 @@ public class mpManipulate extends Command {
     	
     	if(direction.toLowerCase().equals("eject"))
     	{
-    		Robot.manip.elEject(speed);
+    		Robot.manip.elEject();
     		if(Robot.elevator.opticIntake.get()) 
     		{ 
-    			Robot.manip.groundEject(speed); 
+    			Robot.manip.groundEject(); 
+    		}
+    	}
+    	else if(direction.toLowerCase().equals("intake"))
+    	{
+    		Robot.manip.elIntake();
+    		if(Robot.elevator.opticIntake.get()) 
+    		{ 
+    			Robot.manip.groundIntake(); 
     		}
     	}
     	
+    	
     	else
     	{
-    		while(!Robot.manip.limitSwitch.get())
+ /*   		while(!Robot.manip.limitSwitch.get())
     		{	
     			Robot.manip.groundIntake(speed); 
     			Robot.manip.elIntake(speed);
     		}
     		Robot.manip.groundIntake(0); 
-    		Robot.manip.elIntake(0);
+    		Robot.manip.elIntake(0); */
     	}
   
     }
@@ -53,10 +64,14 @@ public class mpManipulate extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	
+
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
     }
 }
