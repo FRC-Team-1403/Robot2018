@@ -119,7 +119,7 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-		autonomousCommand = new dtDriveTimeGyro(4, 0.6);
+/*		autonomousCommand = new dtDriveTimeGyro(4, 0.6);
 		
 		switch(chooserint%2)
 		{
@@ -135,7 +135,7 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new cgRightSwitchAuto(); 
 			}
 			}
-		}
+		} */
 		
 		Scheduler.getInstance().run();
 		
@@ -152,20 +152,20 @@ public class Robot extends IterativeRobot {
 		while(!recorder.checkTime()) {Timer.delay(0.001);}
 		if(recorder.hasNextLine()) {
 			DriveTrain.setSpeed(DriveTrain.frontLeft, recorder.getReading("DriveTrain L"));
-			DriveTrain.setSpeed(DriveTrain.frontRightencR, recorder.getReading("DriveTrain R"));
+			DriveTrain.setSpeed(DriveTrain.frontRight, recorder.getReading("DriveTrain R"));
 			Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
 			Manipulation.setSpeed(Manipulation.intakeLeft,recorder.getReading("Intake Left Motor"));
 			Manipulation.setSpeed(Manipulation.intakeRight, recorder.getReading("Intake Right Motor"));
-			Manipulation.setSpeed(Manipulation.clawLeft, recorder.getReading("Intake Roller Left Motor"));
-			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Intaker Roller Right Motor"));
-			Manipulation.setSpeed(Manipulation.clawLeft,recorder.getReading("Eject Left Motor"));
+			Manipulation.setSpeed(Manipulation.clawLeftencL, recorder.getReading("Intake Roller Left Motor"));
+			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Intake Roller Right Motor"));
+			Manipulation.setSpeed(Manipulation.clawLeftencL,recorder.getReading("Eject Left Motor"));
 			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Right Motor"));
-			Manipulation.setSpeed(Manipulation.clawLeft, recorder.getReading("Eject Roller Left Motor"));
+			Manipulation.setSpeed(Manipulation.clawLeftencL, recorder.getReading("Eject Roller Left Motor"));
 			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Roller Right Motor"));
 			recorder.nextReading();
 		} else {
 			DriveTrain.setSpeed(DriveTrain.frontLeft, 0);
-			DriveTrain.setSpeed(DriveTrain.frontRightencR, 0);
+			DriveTrain.setSpeed(DriveTrain.frontRight, 0);
 		}
 		Scheduler.getInstance().run();
 	}
@@ -192,13 +192,13 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Top Optical Gate", !Robot.elevator.opticSwitch.get());
 		SmartDashboard.putBoolean("Bottom Optical Gate", !Robot.elevator.opticIntake.get());
 		SmartDashboard.putBoolean("Intake Limit Switch", Robot.manip.limitSwitch.get());
-		SmartDashboard.putNumber("Encoder Left", Robot.drivetrain.getLeftPosition());
-		SmartDashboard.putNumber("Encoder Right", Robot.drivetrain.getRightPosition());
+		SmartDashboard.putNumber("Encoder Claw Left", Robot.drivetrain.getLeftPosition());
+		SmartDashboard.putNumber("Encoder Drive Right", Robot.drivetrain.getRightPosition());
 		
 		if(Recorder.isRecording) {
 			recorder.addReading("DriveTrain L", drivetrain.getRawAxisLeft);
 			recorder.addReading("DriveTrain R", drivetrain.getRawAxisRight);
-			recorder.addReading("Elevator", elevator.getRawAxisRight);
+			recorder.addReading("Elevator", elevator.getRawAxisLeft);
 			recorder.addReading("Intake Left Motor", manip.inLeftSpeedi);
 			recorder.addReading("Intake Right Motor", manip.inRightSpeedi);
 			recorder.addReading("Eject Left Motor", manip.inLeftSpeede);

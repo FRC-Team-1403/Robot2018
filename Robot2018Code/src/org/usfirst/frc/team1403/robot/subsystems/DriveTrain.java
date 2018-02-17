@@ -17,7 +17,7 @@ public class DriveTrain extends Subsystem
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    public static TalonSRX frontLeft, backLeft, frontRightencR, backRightencL;
+    public static TalonSRX frontLeft, backLeftencR, frontRight, backRight;
 	public double getRawAxisLeft;
 	public double getRawAxisRight;
     public AnalogGyro gyro;
@@ -26,9 +26,9 @@ public class DriveTrain extends Subsystem
     {	
     	
     	frontLeft = new TalonSRX(RobotMap.frontLeftMotor);
-    	backLeft = new TalonSRX(RobotMap.backLeftMotor);
-    	frontRightencR = new TalonSRX(RobotMap.frontRightMotor);
-    	backRightencL = new TalonSRX(RobotMap.backRightMotor);
+    	backLeftencR = new TalonSRX(RobotMap.backLeftMotorencR);
+    	frontRight = new TalonSRX(RobotMap.frontRightMotor);
+    	backRight = new TalonSRX(RobotMap.backRightMotor);
     	gyro = new AnalogGyro(RobotMap.gyroSensor);
     	getRawAxisLeft = 0;
 		getRawAxisRight = 0;
@@ -42,49 +42,49 @@ public class DriveTrain extends Subsystem
     public void setLeftRightPower(double leftPower, double rightPower)
     {
     	frontLeft.set(ControlMode.PercentOutput, leftPower);
-    	backLeft.set(ControlMode.PercentOutput, leftPower);
-    	frontRightencR.set(ControlMode.PercentOutput, -rightPower);
-    	backRightencL.set(ControlMode.PercentOutput, -rightPower); 
+    	backLeftencR.set(ControlMode.PercentOutput, leftPower);
+    	frontRight.set(ControlMode.PercentOutput, -rightPower);
+    	backRight.set(ControlMode.PercentOutput, -rightPower); 
     }
 
     public void drive()
     {
-    	getRawAxisLeft = Robot.m_oi.djoy.getRawAxis(1);
-    	getRawAxisRight = Robot.m_oi.djoy.getRawAxis(5);
+    	getRawAxisLeft = -Robot.m_oi.djoy.getRawAxis(1);
+    	getRawAxisRight = -Robot.m_oi.djoy.getRawAxis(5);
     	
-    	if(Robot.m_oi.djoy.getRawButton(6))
+    	if(Robot.m_oi.djoy.getRawButton(5))
     	{
     		frontLeft.set(ControlMode.PercentOutput, getRawAxisLeft*0.5);
-    		backLeft.set(ControlMode.PercentOutput, getRawAxisLeft*0.5);
-    		frontRightencR.set(ControlMode.PercentOutput, -getRawAxisRight*0.5);
-    		backRightencL.set(ControlMode.PercentOutput, -getRawAxisRight*0.5);
+    		backLeftencR.set(ControlMode.PercentOutput, -getRawAxisLeft*0.5);
+    		frontRight.set(ControlMode.PercentOutput, getRawAxisRight*0.5);
+    		backRight.set(ControlMode.PercentOutput, getRawAxisRight*0.5);
     	}
     	
     	else
     	{
-    		frontLeft.set(ControlMode.PercentOutput,getRawAxisLeft);
-    		backLeft.set(ControlMode.PercentOutput, getRawAxisLeft);
-    		frontRightencR.set(ControlMode.PercentOutput, -getRawAxisRight);
-    		backRightencL.set(ControlMode.PercentOutput, -getRawAxisRight);
+    		frontLeft.set(ControlMode.PercentOutput, getRawAxisLeft);
+    		backLeftencR.set(ControlMode.PercentOutput, -getRawAxisLeft);
+    		frontRight.set(ControlMode.PercentOutput, getRawAxisRight);
+    		backRight.set(ControlMode.PercentOutput, getRawAxisRight);
     	}
     }
     
     public void stop()
     {
     	frontLeft.set(ControlMode.PercentOutput, 0.0);
-    	backLeft.set(ControlMode.PercentOutput, 0.0);
-    	frontRightencR.set(ControlMode.PercentOutput, 0.0);
-    	backRightencL.set(ControlMode.PercentOutput, 0.0);
+    	backLeftencR.set(ControlMode.PercentOutput, 0.0);
+    	frontRight.set(ControlMode.PercentOutput, 0.0);
+    	backRight.set(ControlMode.PercentOutput, 0.0);
     }
    
     public void resetEncoders()
     {
-    	frontRightencR.getSensorCollection().setQuadraturePosition(0, 0);
-    	backRightencL.getSensorCollection().setQuadraturePosition(0, 0);
+    	backLeftencR.getSensorCollection().setQuadraturePosition(0, 0);
+    	Robot.manip.clawLeftencL.getSensorCollection().setQuadraturePosition(0, 0);
     }
     
-    public double getLeftPosition() { return -frontRightencR.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
-    public double getRightPosition() { return backRightencL.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick-
+    public double getRightPosition() { return -backLeftencR.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick
+    public double getLeftPosition() { return Robot.manip.clawLeftencL.getSensorCollection().getQuadraturePosition(); } //* RobotMap.feetPerTick-
     
     public static void setSpeed(TalonSRX talon, double speed) {
     	talon.set(ControlMode.PercentOutput, speed);

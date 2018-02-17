@@ -22,18 +22,18 @@ public class mpIntakeCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (Robot.manip.limitSwitch.get())
+  /*  	if (Robot.manip.limitSwitch.get())
     	{
     		Robot.manip.clawLeft.set(ControlMode.PercentOutput, 0);
         	Robot.manip.clawRight.set(ControlMode.PercentOutput, 0);
         	Robot.manip.intakeRight.set(ControlMode.PercentOutput, 0);
         	Robot.manip.intakeLeft.set(ControlMode.PercentOutput, 0);
-    	}
-    	else
-    	{
+    	}	*/
+  //  	else
+  //  	{
     		Robot.manip.clawIntake();
         	Robot.manip.groundIntake();
-    	}
+  //  	}
    }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -43,7 +43,7 @@ public class mpIntakeCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.manip.clawLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.clawLeftencL.set(ControlMode.PercentOutput, 0);
     	Robot.manip.clawRight.set(ControlMode.PercentOutput, 0);
     	Robot.manip.intakeRight.set(ControlMode.PercentOutput, 0);
     	Robot.manip.intakeLeft.set(ControlMode.PercentOutput, 0);
@@ -52,7 +52,7 @@ public class mpIntakeCube extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.manip.clawLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.clawLeftencL.set(ControlMode.PercentOutput, 0);
     	Robot.manip.clawRight.set(ControlMode.PercentOutput, 0);
     	Robot.manip.intakeRight.set(ControlMode.PercentOutput, 0);
     	Robot.manip.intakeLeft.set(ControlMode.PercentOutput, 0);

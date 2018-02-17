@@ -27,9 +27,9 @@ public class RobotMap
 	
 	//DriveTrain
 	public static int frontLeftMotor = 9;
-	public static int backLeftMotor = 5;
-	public static int frontRightMotor = 3; //has left encoder
-	public static int backRightMotor = 2; //has right encoder
+	public static int backLeftMotorencR = 5; //encoder
+	public static int frontRightMotor = 3;
+	public static int backRightMotor = 2;
 
 	public static int gyroSensor = 0;
 	
@@ -46,7 +46,7 @@ public class RobotMap
 	public static int intakeRight = 11;
 	
 	//Back roller motors
-	public static int clawLeft = 4;
+	public static int clawLeftencL = 4; //encoder
 	public static int clawRight = 10;
 	
 	// If you are using multiple modules, make sure to define both the port

@@ -24,7 +24,7 @@ public class mpTestManip extends Command {
     protected void execute() {
     	Robot.manip.intakeLeft.set(ControlMode.PercentOutput, -Robot.m_oi.tjoy.getRawAxis(1));
     	Robot.manip.intakeRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
-    	Robot.manip.clawLeft.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
+    	Robot.manip.clawLeftencL.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
     	Robot.manip.clawRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
     	
 

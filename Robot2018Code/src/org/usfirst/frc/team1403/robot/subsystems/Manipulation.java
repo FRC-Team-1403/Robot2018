@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1403.robot.subsystems;
 
 import org.usfirst.frc.team1403.robot.RobotMap;
+import org.usfirst.frc.team1403.robot.commands.mpEjectJoystick;
 import org.usfirst.frc.team1403.robot.commands.mpTestManip;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -17,7 +18,7 @@ public class Manipulation extends Subsystem {
     public static TalonSRX intakeLeft;
 	public static TalonSRX intakeRight;
 	public static TalonSRX clawRight;
-	public static TalonSRX clawLeft;
+	public static TalonSRX clawLeftencL;
     public DigitalInput limitSwitch;
     public double inLeftSpeede, inRightSpeede, rlRightSpeede, rlLeftSpeede, inLeftSpeedi, inRightSpeedi, rlRightSpeedi, rlLeftSpeedi;
 	public Manipulation()
@@ -25,7 +26,7 @@ public class Manipulation extends Subsystem {
 		intakeLeft = new TalonSRX(RobotMap.intakeLeft);
 		intakeRight = new TalonSRX(RobotMap.intakeRight);
 		clawRight = new TalonSRX(RobotMap.clawRight);
-		clawLeft = new TalonSRX(RobotMap.clawLeft);
+		clawLeftencL = new TalonSRX(RobotMap.clawLeftencL);
 		limitSwitch = new DigitalInput (2);
 		
 		inLeftSpeede = .75;
@@ -42,13 +43,13 @@ public class Manipulation extends Subsystem {
 	
 	public void clawIntake() //for roller claw on elevator
 	{
-		clawLeft.set(ControlMode.PercentOutput, rlLeftSpeedi);
+		clawLeftencL.set(ControlMode.PercentOutput, rlLeftSpeedi);
 		clawRight.set(ControlMode.PercentOutput, rlRightSpeedi);
 	}
 	
 	public void clawEject() //for roller claw on elevator
 	{
-		clawLeft.set(ControlMode.PercentOutput, -rlLeftSpeede);
+		clawLeftencL.set(ControlMode.PercentOutput, -rlLeftSpeede);
 		clawRight.set(ControlMode.PercentOutput, -rlRightSpeede);
 	}
 	
@@ -60,17 +61,17 @@ public class Manipulation extends Subsystem {
 	
 	public void groundEject() //for ground intake
 	{
-		intakeLeft.set(ControlMode.PercentOutput, -inRightSpeedi);
-		intakeRight.set(ControlMode.PercentOutput, inLeftSpeede);
+		intakeLeft.set(ControlMode.PercentOutput, inLeftSpeede);
+		intakeRight.set(ControlMode.PercentOutput, -inRightSpeede);
 	}
-	
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new mpTestManip());
-    }
-    public static void setSpeed(TalonSRX talon, double speed)
+	public static void setSpeed(TalonSRX talon, double speed)
     {
     	talon.set(ControlMode.PercentOutput, speed);
     }
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        setDefaultCommand(new mpEjectJoystick());
+    }
+    
 }
 

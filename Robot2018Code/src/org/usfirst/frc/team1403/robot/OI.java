@@ -66,16 +66,17 @@ public class OI {
 		
 		aDjoy.whenReleased(new dtResetEncoders());
 		bDjoy.whileHeld(new dtDriveWithGyro(0.5));
-		lbDjoy.whileHeld(new dtSturnJoy("Left"));
-		rbDjoy.whileHeld(new dtSturnJoy("Right"));
-		backDjoy.whileHeld(new EchoOn());
-		startDjoy.whileHeld(new EchoOff());
+	//	lbDjoy.whileHeld(new dtSturnJoy("Left"));
+	//	rbDjoy.whileHeld(new dtSturnJoy("Right"));
+		backDjoy.whenPressed(new EchoOn());
+		startDjoy.whenPressed(new EchoOff());
 		
 		//lbOjoy.whileHeld(new cgDownIntake());
 		//lbOjoy.whileHeld(new mpManipulate("Intake", 0.6));
 		lbOjoy.whileHeld(new mpIntakeCube());
-		//rbOjoy.whileHeld(new mpManipulate("Eject", 0.6));
 		rbOjoy.whileHeld(new mpEjectCube());
+	//	aOjoy.whileHeld(new mpEjectCube());
+	//	bOjoy.whileHeld(new mpIntakeCube());
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
 		bOjoy.whileHeld(new dtAllStop());
