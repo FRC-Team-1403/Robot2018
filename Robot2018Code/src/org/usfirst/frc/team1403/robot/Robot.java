@@ -188,10 +188,13 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic()
 	{
 		Scheduler.getInstance().run();
-		SmartDashboard.putBoolean("Limit Switch", !Robot.elevator.opticSwitch.get());
-		SmartDashboard.putBoolean("Limit Intake", !Robot.elevator.opticIntake.get());
+		
+		SmartDashboard.putBoolean("Top Optical Gate", Robot.elevator.opticSwitch.get());
+		SmartDashboard.putBoolean("Bottom Optical Gate", Robot.elevator.opticIntake.get());
+		SmartDashboard.putBoolean("Intake Limit Switch", Robot.manip.limitSwitch.get());
 		SmartDashboard.putNumber("Encoder Left", Robot.drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("Encoder Right", Robot.drivetrain.getRightPosition());
+		
 		if(Recorder.isRecording) {
 			recorder.addReading("DriveTrain L", drivetrain.getRawAxisLeft);
 			recorder.addReading("DriveTrain R", drivetrain.getRawAxisRight);
