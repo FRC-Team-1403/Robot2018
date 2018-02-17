@@ -14,18 +14,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Manipulation extends Subsystem {
 
-    public static TalonSRX inLeft;
-	public static TalonSRX inRight;
-	public static TalonSRX rlRight;
-	public static TalonSRX rlLeft;
-  //  public DigitalInput limitSwitch;
+    public static TalonSRX intakeLeft;
+	public static TalonSRX intakeRight;
+	public static TalonSRX clawRight;
+	public static TalonSRX clawLeft;
+    public DigitalInput limitSwitch;
     public double inLeftSpeede, inRightSpeede, rlRightSpeede, rlLeftSpeede, inLeftSpeedi, inRightSpeedi, rlRightSpeedi, rlLeftSpeedi;
 	public Manipulation()
 	{
-		inLeft = new TalonSRX(RobotMap.inLeft);
-		inRight = new TalonSRX(RobotMap.inRight);
-		rlRight = new TalonSRX(RobotMap.rlRight);
-		rlLeft = new TalonSRX(RobotMap.rlLeft);
+		intakeLeft = new TalonSRX(RobotMap.intakeLeft);
+		intakeRight = new TalonSRX(RobotMap.intakeRight);
+		clawRight = new TalonSRX(RobotMap.clawRight);
+		clawLeft = new TalonSRX(RobotMap.clawLeft);
+		limitSwitch = new DigitalInput (2);
+		
 		inLeftSpeede = .75;
 		inRightSpeede = .75;
 		rlRightSpeede = .75;
@@ -38,28 +40,28 @@ public class Manipulation extends Subsystem {
 	
 	}
 	
-	public void elIntake() //for roller claw on elevator
+	public void clawIntake() //for roller claw on elevator
 	{
-		rlLeft.set(ControlMode.PercentOutput, rlLeftSpeedi);
-		rlRight.set(ControlMode.PercentOutput, rlRightSpeedi);
+		clawLeft.set(ControlMode.PercentOutput, rlLeftSpeedi);
+		clawRight.set(ControlMode.PercentOutput, rlRightSpeedi);
 	}
 	
-	public void elEject() //for roller claw on elevator
+	public void clawEject() //for roller claw on elevator
 	{
-		rlLeft.set(ControlMode.PercentOutput, -rlLeftSpeede);
-		rlRight.set(ControlMode.PercentOutput, -rlRightSpeede);
+		clawLeft.set(ControlMode.PercentOutput, -rlLeftSpeede);
+		clawRight.set(ControlMode.PercentOutput, -rlRightSpeede);
 	}
 	
 	public void groundIntake() //for ground intake
 	{
-		inRight.set(ControlMode.PercentOutput, inRightSpeedi);
-		inLeft.set(ControlMode.PercentOutput, -inLeftSpeedi);
+		intakeLeft.set(ControlMode.PercentOutput, -inLeftSpeedi);
+		intakeRight.set(ControlMode.PercentOutput, inRightSpeedi);
 	}
 	
 	public void groundEject() //for ground intake
 	{
-		inRight.set(ControlMode.PercentOutput, -inRightSpeedi);
-		inLeft.set(ControlMode.PercentOutput, inLeftSpeede);
+		intakeLeft.set(ControlMode.PercentOutput, -inRightSpeedi);
+		intakeRight.set(ControlMode.PercentOutput, inLeftSpeede);
 	}
 	
     public void initDefaultCommand() {

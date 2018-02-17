@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team1403.robot.Robot;
 import org.usfirst.frc.team1403.robot.RobotMap;
-import org.usfirst.frc.team1403.robot.commands.dtJoyDrive;
+import org.usfirst.frc.team1403.robot.commands.dtDriveWithJoystick;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -36,7 +36,7 @@ public class DriveTrain extends Subsystem
     
     public void initDefaultCommand() 
     { 
-    	setDefaultCommand(new dtJoyDrive()); 
+    	setDefaultCommand(new dtDriveWithJoystick()); 
     }
     
     public void setLeftRightPower(double leftPower, double rightPower)

@@ -39,7 +39,7 @@ public class Elevator extends Subsystem {
     	else { elMotor.set(ControlMode.PercentOutput, 0.1); }
     }
     
-    public void move() 
+    public void move()
     { 
     	if(!RobotState.isAutonomous()) {
         	getRawAxisRight = -Robot.m_oi.ojoy.getRawAxis(5);

@@ -42,12 +42,12 @@ public class RobotMap
 	public static int limitSwitch = 1;
 	
 	//Front intake motors
-	public static int inLeft = 1;
-	public static int inRight = 11;
+	public static int intakeLeft = 1;
+	public static int intakeRight = 11;
 	
 	//Back roller motors
-	public static int rlLeft = 4;
-	public static int rlRight = 10;
+	public static int clawLeft = 4;
+	public static int clawRight = 10;
 	
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

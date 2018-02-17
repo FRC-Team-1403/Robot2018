@@ -14,9 +14,8 @@ import org.usfirst.frc.team1403.robot.commands.dtResetEncoders;
 import org.usfirst.frc.team1403.robot.commands.dtSturnJoy;
 import org.usfirst.frc.team1403.robot.commands.dtTestMotors;
 import org.usfirst.frc.team1403.robot.commands.elMove;
-import org.usfirst.frc.team1403.robot.commands.mpEject;
-import org.usfirst.frc.team1403.robot.commands.mpIntake;
-import org.usfirst.frc.team1403.robot.commands.mpManipulate;
+import org.usfirst.frc.team1403.robot.commands.mpEjectCube;
+import org.usfirst.frc.team1403.robot.commands.mpIntakeCube;
 
 import echo.EchoOff;
 import echo.EchoOn;
@@ -74,9 +73,9 @@ public class OI {
 		
 		//lbOjoy.whileHeld(new cgDownIntake());
 		//lbOjoy.whileHeld(new mpManipulate("Intake", 0.6));
-		lbOjoy.whileHeld(new mpIntake());
+		lbOjoy.whileHeld(new mpIntakeCube());
 		//rbOjoy.whileHeld(new mpManipulate("Eject", 0.6));
-		rbOjoy.whileHeld(new mpEject());
+		rbOjoy.whileHeld(new mpEjectCube());
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
 		bOjoy.whileHeld(new dtAllStop());

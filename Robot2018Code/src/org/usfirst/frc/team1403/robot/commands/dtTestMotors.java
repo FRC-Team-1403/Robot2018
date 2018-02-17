@@ -33,10 +33,10 @@ public class dtTestMotors extends Command {
     	case 3: { Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0.25); break; }
     	case 2: { Robot.drivetrain.backRightencL.set(ControlMode.PercentOutput, 0.25); break; }
     	
-    	case 1: { Robot.manip.inLeft.set(ControlMode.PercentOutput, -0.25); break; }
-    	case 10: { Robot.manip.inRight.set(ControlMode.PercentOutput, -0.25); break; }
-    	case 4: { Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0.25); break; }
-    	case 11: { Robot.manip.rlRight.set(ControlMode.PercentOutput, 0.25); break; }
+    	case 1: { Robot.manip.intakeLeft.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 10: { Robot.manip.intakeRight.set(ControlMode.PercentOutput, -0.25); break; }
+    	case 4: { Robot.manip.clawLeft.set(ControlMode.PercentOutput, 0.25); break; }
+    	case 11: { Robot.manip.clawRight.set(ControlMode.PercentOutput, 0.25); break; }
     	}
     }
 
@@ -51,10 +51,10 @@ public class dtTestMotors extends Command {
     	Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, 0);
     	Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0);
     	Robot.drivetrain.backRightencL.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.inLeft.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.inRight.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.intakeLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.intakeRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.clawLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.clawRight.set(ControlMode.PercentOutput, 0);
 
     }
 
@@ -65,9 +65,9 @@ public class dtTestMotors extends Command {
     	Robot.drivetrain.backLeft.set(ControlMode.PercentOutput, 0);
     	Robot.drivetrain.frontRightencR.set(ControlMode.PercentOutput, 0);
     	Robot.drivetrain.backRightencL.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.inLeft.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.inRight.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.rlLeft.set(ControlMode.PercentOutput, 0);
-    	Robot.manip.rlRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.intakeLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.intakeRight.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.clawLeft.set(ControlMode.PercentOutput, 0);
+    	Robot.manip.clawRight.set(ControlMode.PercentOutput, 0);
     }
 }
