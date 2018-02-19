@@ -202,7 +202,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Encoder Claw Left", Robot.drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("Encoder Drive Right", Robot.drivetrain.getRightPosition());
 		
-		if(Recorder.isRecording) {
+		if(Recorder.isRecording)
+		{
 			recorder.addReading("DriveTrain Back Left", -drivetrain.getRawAxisLeft);
 			recorder.addReading("DriveTrain Back Right", drivetrain.getRawAxisRight);
 			recorder.addReading("DriveTrain Front Left", drivetrain.getRawAxisLeft);
@@ -217,7 +218,9 @@ public class Robot extends IterativeRobot {
 			recorder.addReading("Eject Roller Left Motor", manip.rlLeftSpeede);
 			recorder.addReading("Eject Roller Right Motor", manip.rlLeftSpeede); */
 			recorder.initNextReading();
-		} else if (Recorder.isStoring()) {
+		}
+		
+		else if (Recorder.isStoring()) {
 			recorder.storeWritings();
 		}
 	}

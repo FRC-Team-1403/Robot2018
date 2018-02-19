@@ -2,6 +2,7 @@ package org.usfirst.frc.team1403.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.usfirst.frc.team1403.robot.Robot;
@@ -35,7 +36,7 @@ public class DriveTrain extends Subsystem
     	
 	}
     
-    public void initDefaultCommand() 
+    public void initDefaultCommand()
     { 
     	setDefaultCommand(new dtDriveWithJoystick()); 
     }
@@ -53,20 +54,24 @@ public class DriveTrain extends Subsystem
     	getRawAxisLeft = -Robot.m_oi.djoy.getRawAxis(1);
     	getRawAxisRight = -Robot.m_oi.djoy.getRawAxis(5);
     	
-    	if(Robot.m_oi.djoy.getRawButton(5))
+    	if(!RobotState.isAutonomous())
     	{
-    		frontLeft.set(ControlMode.PercentOutput, getRawAxisLeft*0.5);
-    		backLeftencR.set(ControlMode.PercentOutput, -getRawAxisLeft*0.5);
-    		frontRight.set(ControlMode.PercentOutput, getRawAxisRight*0.5);
-    		backRight.set(ControlMode.PercentOutput, getRawAxisRight*0.5);
-    	}
+    		
+    		if(Robot.m_oi.djoy.getRawButton(5))
+    		{
+    			frontLeft.set(ControlMode.PercentOutput, getRawAxisLeft*0.5);
+    			backLeftencR.set(ControlMode.PercentOutput, -getRawAxisLeft*0.5);
+    			frontRight.set(ControlMode.PercentOutput, getRawAxisRight*0.5);
+    			backRight.set(ControlMode.PercentOutput, getRawAxisRight*0.5);
+    		}
     	
-    	else
-    	{
-    		frontLeft.set(ControlMode.PercentOutput, getRawAxisLeft);
-    		backLeftencR.set(ControlMode.PercentOutput, -getRawAxisLeft);
-    		frontRight.set(ControlMode.PercentOutput, getRawAxisRight);
-    		backRight.set(ControlMode.PercentOutput, getRawAxisRight);
+    		else
+    		{
+    			frontLeft.set(ControlMode.PercentOutput, getRawAxisLeft);
+    			backLeftencR.set(ControlMode.PercentOutput, -getRawAxisLeft);
+    			frontRight.set(ControlMode.PercentOutput, getRawAxisRight);
+    			backRight.set(ControlMode.PercentOutput, getRawAxisRight);
+    		}
     	}
     }
     
