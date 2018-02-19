@@ -51,11 +51,12 @@ public class DriveTrain extends Subsystem
 
     public void drive()
     {
-    	getRawAxisLeft = -Robot.m_oi.djoy.getRawAxis(1);
-    	getRawAxisRight = -Robot.m_oi.djoy.getRawAxis(5);
+    	
     	
     	if(!RobotState.isAutonomous())
     	{
+    		getRawAxisLeft = -Robot.m_oi.djoy.getRawAxis(1);
+        	getRawAxisRight = -Robot.m_oi.djoy.getRawAxis(5);
     		
     		if(Robot.m_oi.djoy.getRawButton(5))
     		{
