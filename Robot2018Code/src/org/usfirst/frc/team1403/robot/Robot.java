@@ -107,7 +107,7 @@ public class Robot extends IterativeRobot {
 		recorder.resetReadings();
 		recorder.storeReadings();
 		autonomousCommand = chooser.getSelected();
-		autonomousCommand = chooser.getSelected();
+		//autonomousCommand = chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -151,9 +151,16 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		while(!recorder.checkTime()) {Timer.delay(0.001);}
 		if(recorder.hasNextLine()) {
-			DriveTrain.setSpeed(DriveTrain.frontLeft, recorder.getReading("DriveTrain L"));
-			DriveTrain.setSpeed(DriveTrain.frontRight, recorder.getReading("DriveTrain R"));
-			Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
+			System.out.println(recorder.getReading("DriveTrain Back Left"));
+			System.out.println(recorder.getReading("DriveTrain Back Right"));
+			System.out.println(recorder.getReading("DriveTrain Front Left"));
+			System.out.println(recorder.getReading("DriveTrain Front Right"));
+			DriveTrain.setSpeed(DriveTrain.frontLeft, recorder.getReading("DriveTrain Front Left"));
+			DriveTrain.setSpeed(DriveTrain.backLeftencR, recorder.getReading("DriveTrain Back Left"));
+			DriveTrain.setSpeed(DriveTrain.frontRight, recorder.getReading("DriveTrain Front Right"));
+			DriveTrain.setSpeed(DriveTrain.backRight, recorder.getReading("DriveTrain Back Right"));
+			System.out.println("AFTER--------------------------------------------------------");
+			/*Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
 			Manipulation.setSpeed(Manipulation.intakeLeft,recorder.getReading("Intake Left Motor"));
 			Manipulation.setSpeed(Manipulation.intakeRight, recorder.getReading("Intake Right Motor"));
 			Manipulation.setSpeed(Manipulation.clawLeftencL, recorder.getReading("Intake Roller Left Motor"));
@@ -161,11 +168,11 @@ public class Robot extends IterativeRobot {
 			Manipulation.setSpeed(Manipulation.clawLeftencL,recorder.getReading("Eject Left Motor"));
 			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Right Motor"));
 			Manipulation.setSpeed(Manipulation.clawLeftencL, recorder.getReading("Eject Roller Left Motor"));
-			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Roller Right Motor"));
+			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Roller Right Motor")); */
 			recorder.nextReading();
 		} else {
-			DriveTrain.setSpeed(DriveTrain.frontLeft, 0);
-			DriveTrain.setSpeed(DriveTrain.frontRight, 0);
+			//DriveTrain.setSpeed(DriveTrain.frontLeft, 0);
+			//DriveTrain.setSpeed(DriveTrain.frontRight, 0);
 		}
 		Scheduler.getInstance().run();
 	}
@@ -196,9 +203,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Encoder Drive Right", Robot.drivetrain.getRightPosition());
 		
 		if(Recorder.isRecording) {
-			recorder.addReading("DriveTrain L", drivetrain.getRawAxisLeft);
-			recorder.addReading("DriveTrain R", drivetrain.getRawAxisRight);
-			recorder.addReading("Elevator", elevator.getRawAxisLeft);
+			recorder.addReading("DriveTrain Back Left", -drivetrain.getRawAxisLeft);
+			recorder.addReading("DriveTrain Back Right", drivetrain.getRawAxisRight);
+			recorder.addReading("DriveTrain Front Left", drivetrain.getRawAxisLeft);
+			recorder.addReading("DriveTrain Front Right", drivetrain.getRawAxisRight);
+			/*recorder.addReading("Elevator", elevator.getRawAxisLeft);
 			recorder.addReading("Intake Left Motor", manip.inLeftSpeedi);
 			recorder.addReading("Intake Right Motor", manip.inRightSpeedi);
 			recorder.addReading("Eject Left Motor", manip.inLeftSpeede);
@@ -206,7 +215,7 @@ public class Robot extends IterativeRobot {
 			recorder.addReading("Intake Roller Left Motor", manip.rlLeftSpeedi);
 			recorder.addReading("Intake Roller Right Motor", manip.rlRightSpeedi);
 			recorder.addReading("Eject Roller Left Motor", manip.rlLeftSpeede);
-			recorder.addReading("Eject Roller Right Motor", manip.rlLeftSpeede);
+			recorder.addReading("Eject Roller Right Motor", manip.rlLeftSpeede); */
 			recorder.initNextReading();
 		} else if (Recorder.isStoring()) {
 			recorder.storeWritings();

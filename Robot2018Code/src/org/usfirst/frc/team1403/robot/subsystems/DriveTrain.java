@@ -30,8 +30,9 @@ public class DriveTrain extends Subsystem
     	frontRight = new TalonSRX(RobotMap.frontRightMotor);
     	backRight = new TalonSRX(RobotMap.backRightMotor);
     	gyro = new AnalogGyro(RobotMap.gyroSensor);
-    	getRawAxisLeft = 0;
-		getRawAxisRight = 0;
+    	getRawAxisLeft = .0;
+    	getRawAxisRight = .0;
+    	
 	}
     
     public void initDefaultCommand() 

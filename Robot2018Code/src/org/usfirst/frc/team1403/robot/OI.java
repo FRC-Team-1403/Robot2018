@@ -68,8 +68,8 @@ public class OI {
 		bDjoy.whileHeld(new dtDriveWithGyro(0.5));
 	//	lbDjoy.whileHeld(new dtSturnJoy("Left"));
 	//	rbDjoy.whileHeld(new dtSturnJoy("Right"));
-		backDjoy.whenPressed(new EchoOn());
-		startDjoy.whenPressed(new EchoOff());
+		backDjoy.whenReleased(new EchoOn());
+		startDjoy.whenReleased(new EchoOff());
 		
 		//lbOjoy.whileHeld(new cgDownIntake());
 		//lbOjoy.whileHeld(new mpManipulate("Intake", 0.6));

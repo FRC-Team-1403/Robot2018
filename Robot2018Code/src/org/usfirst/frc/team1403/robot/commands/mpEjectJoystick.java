@@ -22,8 +22,8 @@ public class mpEjectJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.manip.clawLeftencL.set(ControlMode.PercentOutput, -Robot.m_oi.ojoy.getRawAxis(5));
-    	Robot.manip.clawRight.set(ControlMode.PercentOutput, -Robot.m_oi.ojoy.getRawAxis(5));
+    //	Robot.manip.clawLeftencL.set(ControlMode.PercentOutput, -Robot.m_oi.ojoy.getRawAxis(5));
+    //	Robot.manip.clawRight.set(ControlMode.PercentOutput, -Robot.m_oi.ojoy.getRawAxis(5));
     }
 
     // Make this return true when this Command no longer needs to run execute()
