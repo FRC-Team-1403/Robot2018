@@ -149,31 +149,31 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		while(!recorder.checkTime()) {Timer.delay(0.001);}
-		if(recorder.hasNextLine()) {
+		//while(!recorder.checkTime()) {Timer.delay(0.001);}
+		if(recorder.hasNextLine())
+		{
 			System.out.println(recorder.getReading("DriveTrain Back Left"));
-			System.out.println(recorder.getReading("DriveTrain Back Right"));
-			System.out.println(recorder.getReading("DriveTrain Front Left"));
-			System.out.println(recorder.getReading("DriveTrain Front Right"));
 			DriveTrain.setSpeed(DriveTrain.frontLeft, recorder.getReading("DriveTrain Front Left"));
 			DriveTrain.setSpeed(DriveTrain.backLeftencR, recorder.getReading("DriveTrain Back Left"));
 			DriveTrain.setSpeed(DriveTrain.frontRight, recorder.getReading("DriveTrain Front Right"));
 			DriveTrain.setSpeed(DriveTrain.backRight, recorder.getReading("DriveTrain Back Right"));
-			System.out.println("AFTER--------------------------------------------------------");
-			/*Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
-			Manipulation.setSpeed(Manipulation.intakeLeft,recorder.getReading("Intake Left Motor"));
-			Manipulation.setSpeed(Manipulation.intakeRight, recorder.getReading("Intake Right Motor"));
-			Manipulation.setSpeed(Manipulation.clawLeftencL, recorder.getReading("Intake Roller Left Motor"));
-			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Intake Roller Right Motor"));
-			Manipulation.setSpeed(Manipulation.clawLeftencL,recorder.getReading("Eject Left Motor"));
-			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Right Motor"));
+			Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
 			Manipulation.setSpeed(Manipulation.clawLeftencL, recorder.getReading("Eject Roller Left Motor"));
-			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Roller Right Motor")); */
-			recorder.nextReading();
-		} else {
-			//DriveTrain.setSpeed(DriveTrain.frontLeft, 0);
-			//DriveTrain.setSpeed(DriveTrain.frontRight, 0);
+			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Roller Right Motor"));
+			Timer.delay(0.001);
 		}
+		
+		else
+		{
+			DriveTrain.setSpeed(DriveTrain.frontLeft, 0);
+			DriveTrain.setSpeed(DriveTrain.frontRight, 0);
+			DriveTrain.setSpeed(DriveTrain.backLeftencR, 0);
+			DriveTrain.setSpeed(DriveTrain.backRight, 0);
+			Elevator.setSpeed(Elevator.elMotor, 0);
+			Manipulation.setSpeed(Manipulation.clawLeftencL, 0);
+			Manipulation.setSpeed(Manipulation.clawRight, 0);
+		}
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -208,16 +208,12 @@ public class Robot extends IterativeRobot {
 			recorder.addReading("DriveTrain Back Right", drivetrain.getRawAxisRight);
 			recorder.addReading("DriveTrain Front Left", drivetrain.getRawAxisLeft);
 			recorder.addReading("DriveTrain Front Right", drivetrain.getRawAxisRight);
-			/*recorder.addReading("Elevator", elevator.getRawAxisLeft);
-			recorder.addReading("Intake Left Motor", manip.inLeftSpeedi);
-			recorder.addReading("Intake Right Motor", manip.inRightSpeedi);
-			recorder.addReading("Eject Left Motor", manip.inLeftSpeede);
-			recorder.addReading("Eject Right Motor", manip.inLeftSpeede);
-			recorder.addReading("Intake Roller Left Motor", manip.rlLeftSpeedi);
-			recorder.addReading("Intake Roller Right Motor", manip.rlRightSpeedi);
-			recorder.addReading("Eject Roller Left Motor", manip.rlLeftSpeede);
-			recorder.addReading("Eject Roller Right Motor", manip.rlLeftSpeede); */
-			recorder.initNextReading();
+			System.out.println(recorder.getReading("DriveTrain Back Left"));
+			System.out.println(recorder.getReading("DriveTrain Back Right"));
+			recorder.addReading("Elevator", elevator.getRawAxisLeftoJoy);
+			recorder.addReading("Eject Roller Left Motor", manip.getRawAxisRightoJoy);
+			recorder.addReading("Eject Roller Right Motor", manip.getRawAxisRightoJoy);
+			System.out.println(recorder.initNextReading());
 		}
 		
 		else if (Recorder.isStoring()) {
@@ -231,9 +227,17 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 	}
+	
 	public void init() {
 		//File Select Menu
-		path = new String("/home/lvuser/0.txt");
+		path = new String("/home/lvuser/0.txt"); //Reads from this one
+		/*
+		 * Different commands to call
+		 * "/home/lvuser/RightSwitch.txt"
+		 * "/home/lvuser/LeftSwitch.txt"
+		 * "/home/lvuser/RightEndAround.txt
+		 * "/home/lvuser/LeftEndAround.txt
+		 */
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;

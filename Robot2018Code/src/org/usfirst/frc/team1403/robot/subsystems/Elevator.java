@@ -20,7 +20,7 @@ public class Elevator extends Subsystem {
     public DigitalInput opticSwitch, opticIntake;
     public AnalogInput infrared;
     public static TalonSRX elMotor;
-	public double getRawAxisLeft;
+	public double getRawAxisLeftoJoy;
 
     
     public Elevator()
@@ -28,22 +28,24 @@ public class Elevator extends Subsystem {
     	opticSwitch = new DigitalInput(RobotMap.opticSwitch);
     	opticIntake = new DigitalInput(RobotMap.opticIntake);
 
-    	getRawAxisLeft = 0;
+    	getRawAxisLeftoJoy = 0;
     	//infared = new AnalogInput(0);
     	elMotor = new TalonSRX(RobotMap.elevatorMotor);
     }
 
     public void Move(boolean direction) // false = down; true = up
     {
-    	if (direction) { elMotor.set(ControlMode.PercentOutput, -0.75); }
-    	else { elMotor.set(ControlMode.PercentOutput, 0.75); }
+    	if(!RobotState.isAutonomous()) {
+    		if (direction) { elMotor.set(ControlMode.PercentOutput, -0.75); }
+    		else { elMotor.set(ControlMode.PercentOutput, 0.75); }
+    	}
     }
     
     public void move()
     { 
     	if(!RobotState.isAutonomous()) {
-    		getRawAxisLeft = -Robot.m_oi.ojoy.getRawAxis(1);
-    		Elevator.elMotor.set(ControlMode.PercentOutput, -getRawAxisLeft); 
+    		getRawAxisLeftoJoy = -Robot.m_oi.ojoy.getRawAxis(1);
+    		Elevator.elMotor.set(ControlMode.PercentOutput, -getRawAxisLeftoJoy); 
     	}
     }
     public static void setSpeed(TalonSRX talon, double speed)

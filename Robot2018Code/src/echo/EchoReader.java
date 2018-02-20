@@ -1,8 +1,11 @@
 package echo;
 
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+
+import echo.Recording;
 
 //basic wrapper
 public class EchoReader {

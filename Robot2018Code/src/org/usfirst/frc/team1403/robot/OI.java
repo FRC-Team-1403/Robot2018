@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1403.robot;
 
+import org.usfirst.frc.team1403.robot.commands.EchoOff;
+import org.usfirst.frc.team1403.robot.commands.EchoOn;
 import org.usfirst.frc.team1403.robot.commands.cgDownIntake;
 import org.usfirst.frc.team1403.robot.commands.dtAllStop;
 import org.usfirst.frc.team1403.robot.commands.dtDriveWithGyro;
@@ -17,8 +19,6 @@ import org.usfirst.frc.team1403.robot.commands.elMove;
 import org.usfirst.frc.team1403.robot.commands.mpEjectCube;
 import org.usfirst.frc.team1403.robot.commands.mpIntakeCube;
 
-import echo.EchoOff;
-import echo.EchoOn;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
