@@ -210,9 +210,9 @@ public class Robot extends IterativeRobot {
 			recorder.addReading("DriveTrain Front Right", drivetrain.getRawAxisRight);
 			System.out.println(recorder.getReading("DriveTrain Back Left"));
 			System.out.println(recorder.getReading("DriveTrain Back Right"));
-			recorder.addReading("Elevator", elevator.getRawAxisLeftoJoy);
-			recorder.addReading("Eject Roller Left Motor", manip.getRawAxisRightoJoy);
-			recorder.addReading("Eject Roller Right Motor", manip.getRawAxisRightoJoy);
+			recorder.addReading("Elevator", -elevator.getRawAxisLeftoJoy);
+			recorder.addReading("Eject Roller Left Motor", -manip.getRawAxisRightoJoy);
+			recorder.addReading("Eject Roller Right Motor", -manip.getRawAxisRightoJoy);
 			System.out.println(recorder.initNextReading());
 		}
 		
@@ -230,7 +230,7 @@ public class Robot extends IterativeRobot {
 	
 	public void init() {
 		//File Select Menu
-		path = new String("/home/lvuser/0.txt"); //Reads from this one
+		path = new String("/home/lvuser/10.txt"); //Reads from this one
 		/*
 		 * Different commands to call
 		 * "/home/lvuser/RightSwitch.txt"
@@ -241,7 +241,7 @@ public class Robot extends IterativeRobot {
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
-		path = new String("/home/lvuser/10.txt");
+		path = new String("/home/lvuser/0.txt");
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
