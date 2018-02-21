@@ -230,7 +230,7 @@ public class Robot extends IterativeRobot {
 	
 	public void init() {
 		//File Select Menu
-		path = new String("/home/lvuser/10.txt"); //Reads from this one
+		path = new String("/home/lvuser/0.txt"); //Reads from this one
 		/*
 		 * Different commands to call
 		 * "/home/lvuser/RightSwitch.txt"
@@ -241,9 +241,10 @@ public class Robot extends IterativeRobot {
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
-		path = new String("/home/lvuser/0.txt");
+		path = new String("/home/lvuser/10.txt");
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
 	}
 }
+
