@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static boolean store;
 	public static Manipulation manip;
 	public static Elevator elevator;
+	int delay;
 	int autoint;
 	
 	public static OI m_oi;
@@ -63,6 +64,7 @@ public class Robot extends IterativeRobot {
 		drivetrain = new DriveTrain();
 		//SmartDashboard.putBoolean("Limit Switch", false);
 		numpaths = 0;
+		delay = 0;
 		manip = new Manipulation();
 		elevator = new Elevator();
 		m_oi = new OI();
@@ -87,7 +89,16 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() 
 	{
 		
-		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) { autoint++; SmartDashboard.putNumber("autoint", autoint%4); }
+		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) { autoint++; }
+		SmartDashboard.putNumber("autoint", autoint%4);
+		
+		if (Robot.m_oi.ojoy.getRawButtonReleased(2)) { delay++; }
+		SmartDashboard.putNumber("delay", delay%5);
+		
+		if (autoint%4 == 0) { SmartDashboard.putString("Auto Position", "Left"); }
+		if (autoint%4 == 1) { SmartDashboard.putString("Auto Position", "Right"); }
+		if (autoint%4 == 2) { SmartDashboard.putString("Auto Position", "Middle"); }
+		if (autoint%4 == 3) { SmartDashboard.putString("Auto Position", "STRAIGHT"); }
 		
 		Scheduler.getInstance().run();
 
@@ -158,6 +169,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		//while(!recorder.checkTime()) {Timer.delay(0.001);}
+		Timer.delay(delay%5);
 		if(recorder.hasNextLine())
 		{
 			System.out.println(recorder.getReading("DriveTrain Back Left"));
@@ -278,10 +290,13 @@ public class Robot extends IterativeRobot {
 		path = new String("/home/lvuser/0.txt"); //Reads from this one
 		/*
 		 * Different commands to call
-		 * "/home/lvuser/RightSwitch.txt"
-		 * "/home/lvuser/LeftSwitch.txt"
-		 * "/home/lvuser/RightEndAround.txt
-		 * "/home/lvuser/LeftEndAround.txt
+		 * "/home/lvuser/RightSwitchFromRight.txt"
+		 * "/home/lvuser/LeftSwitchFromRight.txt"
+		 * "/home/lvuser/LeftSwitchFromLeft.txt
+		 * "/home/lvuser/RightSwitchFromLeft.txt
+		 * "/home/lvuser/LeftSwitchFromMiddle.txt
+		 * "/home/lvuser/RightSwitchFromMiddle.txt
+		 * "/home/lvuser/Straight.txt
 		 */
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
