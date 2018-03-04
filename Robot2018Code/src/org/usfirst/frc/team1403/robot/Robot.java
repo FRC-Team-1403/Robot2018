@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public static boolean store;
 	public static Manipulation manip;
 	public static Elevator elevator;
-	int chooserint;
+	int autoint;
 	
 	public static OI m_oi;
 	
@@ -63,7 +63,6 @@ public class Robot extends IterativeRobot {
 		drivetrain = new DriveTrain();
 		//SmartDashboard.putBoolean("Limit Switch", false);
 		numpaths = 0;
-		init();
 		manip = new Manipulation();
 		elevator = new Elevator();
 		m_oi = new OI();
@@ -82,31 +81,40 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 @Override
-	public void disabledInit() { chooserint = 0; }
+	public void disabledInit() { autoint = 0; }
 
 	@Override
 	public void disabledPeriodic() 
 	{
 		
-		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) 
-		{ 
-			chooserint++; SmartDashboard.putNumber("chooserint", chooserint%7); 
-		}
-	
-		switch(chooserint%2) 
-		{
-		case 0: SmartDashboard.putString("Auto Selector", "Straight");break;
-		case 1: SmartDashboard.putString("Auto Selector", "Switch");break; 
-		}
+		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) { autoint++; SmartDashboard.putNumber("autoint", autoint%4); }
+		
 		Scheduler.getInstance().run();
 
 }
 	@Override
 	public void autonomousInit() 
 	{
+		Robot.drivetrain.backLeftencR.configVoltageCompSaturation(12.0, 10);
+    	Robot.drivetrain.backLeftencR.enableVoltageCompensation(true);
+    	Robot.drivetrain.backLeftencR.configVoltageMeasurementFilter(32, 10);
+    	
+    	Robot.drivetrain.backRight.configVoltageCompSaturation(12.0, 10);
+    	Robot.drivetrain.backRight.enableVoltageCompensation(true);
+    	Robot.drivetrain.backRight.configVoltageMeasurementFilter(32, 10);
+    	
+    	Robot.drivetrain.frontLeft.configVoltageCompSaturation(12.0, 10);
+    	Robot.drivetrain.frontLeft.enableVoltageCompensation(true);
+    	Robot.drivetrain.frontLeft.configVoltageMeasurementFilter(32, 10);
+    	
+    	Robot.drivetrain.frontRight.configVoltageCompSaturation(12.0, 10);
+    	Robot.drivetrain.frontRight.enableVoltageCompensation(true);
+    	Robot.drivetrain.frontRight.configVoltageMeasurementFilter(32, 10);
+    	
 		recorder.resetReadings();
 		recorder.storeReadings();
 		autonomousCommand = chooser.getSelected();
+		init();
 		//autonomousCommand = chooser.getSelected();
 
 		/*
@@ -117,9 +125,9 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+/*		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-/*		autonomousCommand = new dtDriveTimeGyro(4, 0.6);
+		autonomousCommand = new dtDriveTimeGyro(4, 0.6);
 		
 		switch(chooserint%2)
 		{
@@ -186,6 +194,11 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
+		Robot.drivetrain.backLeftencR.enableVoltageCompensation(false);
+		Robot.drivetrain.backRight.enableVoltageCompensation(false);
+		Robot.drivetrain.frontLeft.enableVoltageCompensation(false);
+		Robot.drivetrain.frontRight.enableVoltageCompensation(false);
+		
 	}
 
 	/**
@@ -229,6 +242,38 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void init() {
+		
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		SmartDashboard.putNumber("Auto Position", autoint%4);
+		
+		//Middle
+		if (autoint%4 == 0)
+		{
+			if(gameData.charAt(0) == 'L') { /*path = new String("");*/ }	//Left switch from middle
+			else { /*path = new String("");*/ }								//Right switch from middle
+		}
+		
+		//Right
+		if (autoint%4 == 1)
+		{
+			if(gameData.charAt(0) == 'L') { /*path = new String("");*/ }	//Left switch from right
+			else { /*path = new String("");*/ }								//Right switch from right
+		}
+		
+		//Left
+		if (autoint%4 == 2)
+		{
+			if(gameData.charAt(0) == 'L') { /*path = new String("");*/ }	//Left switch from left
+			else { /*path = new String("");*/ }								//Right switch from left
+		}
+		
+		//Straight
+		if (autoint%4 == 3)
+		{
+			/*path = new String("");*/										//Straight
+		}
+			
+	
 		//File Select Menu
 		path = new String("/home/lvuser/0.txt"); //Reads from this one
 		/*
