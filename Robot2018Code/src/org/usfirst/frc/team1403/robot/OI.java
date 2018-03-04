@@ -49,6 +49,7 @@ public class OI {
 	public Button backOjoy = new JoystickButton(ojoy,7);
 	public Button startOjoy =  new JoystickButton(ojoy, 8);
 	
+	/*
 	public Joystick tjoy = new Joystick(2);
 	public Button aTjoy = new JoystickButton(tjoy, 1);
 	public Button bTjoy = new JoystickButton(tjoy, 2);
@@ -60,6 +61,7 @@ public class OI {
 	public Button startTjoy =  new JoystickButton(tjoy, 8);
 	public Button leftTrigger = new JoystickButton(tjoy, 9);
 	public Button rightTrigger = new JoystickButton(tjoy, 9);
+	*/
 
 
 	public OI() {
@@ -80,14 +82,14 @@ public class OI {
 		backOjoy.whenPressed(new elMove(1));
 		startOjoy.whenPressed(new elMove(2));
 		bOjoy.whileHeld(new dtAllStop());
-		
+	
+		/*
 		//TESTING CODE (with test joystick)
-		
-		
 		aTjoy.whileHeld(new dtTestMotors(1));
 		bTjoy.whileHeld(new dtTestMotors(10));
 		xTjoy.whileHeld(new dtTestMotors(4));
 		yTjoy.whileHeld(new dtTestMotors(11));
+		*/
 
 
 	}

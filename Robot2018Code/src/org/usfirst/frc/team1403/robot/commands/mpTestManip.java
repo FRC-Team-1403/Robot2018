@@ -22,10 +22,10 @@ public class mpTestManip extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.manip.intakeLeft.set(ControlMode.PercentOutput, -Robot.m_oi.tjoy.getRawAxis(1));
-    	Robot.manip.intakeRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
-    	Robot.manip.clawLeftencL.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
-    	Robot.manip.clawRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
+   // 	Robot.manip.intakeLeft.set(ControlMode.PercentOutput, -Robot.m_oi.tjoy.getRawAxis(1));
+   // 	Robot.manip.intakeRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
+   // 	Robot.manip.clawLeftencL.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
+   // 	Robot.manip.clawRight.set(ControlMode.PercentOutput, Robot.m_oi.tjoy.getRawAxis(1));
     	
 
     }
