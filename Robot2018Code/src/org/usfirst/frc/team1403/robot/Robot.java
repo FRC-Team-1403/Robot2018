@@ -63,18 +63,27 @@ public class Robot extends IterativeRobot {
 		recorder = new Recorder(10000); //10000 = max arr size
 		drivetrain = new DriveTrain();
 		//SmartDashboard.putBoolean("Limit Switch", false);
+	//	init();
 		numpaths = 0;
 		delay = 0;
+		autoint = 0;
 		manip = new Manipulation();
 		elevator = new Elevator();
 		m_oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
-		recorder.setCurrentWritefile(1);
-		recorder.setCurrentReadfile(0);
-		Recorder.initWriter();
-		Recorder.initReader();
+	SmartDashboard.putData("Auto mode", chooser);
+
+	
+	init();
+	recorder.setCurrentWritefile(1);
+	recorder.setCurrentReadfile(0);
+	Recorder.initWriter();
+	Recorder.initReader();
+	recorder.resetReadings();
+	recorder.storeReadings();
+	
+		
 	}
 
 	/**
@@ -83,7 +92,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 @Override
-	public void disabledInit() { autoint = 0; }
+	public void disabledInit() {	}
 
 	@Override
 	public void disabledPeriodic() 
@@ -122,10 +131,20 @@ public class Robot extends IterativeRobot {
     	Robot.drivetrain.frontRight.enableVoltageCompensation(true);
     	Robot.drivetrain.frontRight.configVoltageMeasurementFilter(32, 10);
     	
+    	
+    	/*
+    	init();
+    	recorder.setCurrentWritefile(1);
+		recorder.setCurrentReadfile(0);
+		Recorder.initWriter();
+		Recorder.initReader();
 		recorder.resetReadings();
 		recorder.storeReadings();
+		*/
+		
 		autonomousCommand = chooser.getSelected();
-		init();
+		
+		
 		//autonomousCommand = chooser.getSelected();
 
 		/*
@@ -256,55 +275,56 @@ public class Robot extends IterativeRobot {
 	public void init() {
 		
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
-		SmartDashboard.putNumber("Auto Position", autoint%4);
 		
-		//Middle
+		//Left
 		if (autoint%4 == 0)
 		{
-			if(gameData.charAt(0) == 'L') { /*path = new String("");*/ }	//Left switch from middle
-			else { /*path = new String("");*/ }								//Right switch from middle
+			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/LeftSwitchFromLeft.txt"); }	//Left switch from middle
+			else { path = new String("/home/lvuser/Straight.txt"); }								//Right switch from middle
 		}
 		
 		//Right
 		if (autoint%4 == 1)
 		{
-			if(gameData.charAt(0) == 'L') { /*path = new String("");*/ }	//Left switch from right
-			else { /*path = new String("");*/ }								//Right switch from right
+			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/Straight.txt"); }	//Left switch from right
+			else { path = new String("/home/lvuser/RightSwitchFromRight.txt"); }								//Right switch from right
 		}
 		
-		//Left
+		//Middle
 		if (autoint%4 == 2)
 		{
-			if(gameData.charAt(0) == 'L') { /*path = new String("");*/ }	//Left switch from left
-			else { /*path = new String("");*/ }								//Right switch from left
+			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/LeftSwitchFromMiddle.txt"); }	//Left switch from left
+			else { path = new String("/home/lvuser/RightSwitchFromMiddle.txt"); }										//Right switch from left
 		}
+		
 		
 		//Straight
 		if (autoint%4 == 3)
 		{
-			/*path = new String("");*/										//Straight
+			path = new String("/home/lvuser/Straight.txt");			//Straight
 		}
 			
 	
 		//File Select Menu
-		path = new String("/home/lvuser/0.txt"); //Reads from this one
 		/*
 		 * Different commands to call
-		 * "/home/lvuser/RightSwitchFromRight.txt"
-		 * "/home/lvuser/LeftSwitchFromRight.txt"
-		 * "/home/lvuser/LeftSwitchFromLeft.txt
-		 * "/home/lvuser/RightSwitchFromLeft.txt
-		 * "/home/lvuser/LeftSwitchFromMiddle.txt
-		 * "/home/lvuser/RightSwitchFromMiddle.txt
-		 * "/home/lvuser/Straight.txt
+		 * "/home/lvuser/RightSwitchFromRight.txt"		COMPLETED
+		 * "/home/lvuser/LeftSwitchFromRight.txt" 		
+		 * "/home/lvuser/LeftSwitchFromLeft.txt"		COMPLETED
+		 * "/home/lvuser/RightSwitchFromLeft.txt"		
+		 * "/home/lvuser/LeftSwitchFromMiddle.txt"		COMPLETED
+		 * "/home/lvuser/RightSwitchFromMiddle.txt"		COMPLETED
+		 * "/home/lvuser/Straight.txt" 					COMPLETED
 		 */
+//		path = new String("/home/lvuser/RightSwitchFromRight.txt"); //Reads from this one
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
-		path = new String("/home/lvuser/10.txt");
+		path = new String("/home/lvuser/RightSwitchFromLeft.txt");
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
 	}
 }
+	
 
