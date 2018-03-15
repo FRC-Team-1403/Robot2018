@@ -35,7 +35,8 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Recorder recorder;
 	public static boolean record;
-	public static boolean store;
+	public static boolean store;	
+	
 	public static Manipulation manip;
 	public static Elevator elevator;
 	int delay;
@@ -63,7 +64,6 @@ public class Robot extends IterativeRobot {
 		recorder = new Recorder(10000); //10000 = max arr size
 		drivetrain = new DriveTrain();
 		//SmartDashboard.putBoolean("Limit Switch", false);
-	//	init();
 		numpaths = 0;
 		delay = 0;
 		autoint = 0;
@@ -74,7 +74,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	SmartDashboard.putData("Auto mode", chooser);
 
-	
+	/*
 	init();
 	recorder.setCurrentWritefile(1);
 	recorder.setCurrentReadfile(0);
@@ -82,7 +82,7 @@ public class Robot extends IterativeRobot {
 	Recorder.initReader();
 	recorder.resetReadings();
 	recorder.storeReadings();
-	
+	*/
 		
 	}
 
@@ -101,8 +101,8 @@ public class Robot extends IterativeRobot {
 		if (Robot.m_oi.ojoy.getRawButtonReleased(1)) { autoint++; }
 		SmartDashboard.putNumber("autoint", autoint%4);
 		
-		if (Robot.m_oi.ojoy.getRawButtonReleased(2)) { delay++; }
-		SmartDashboard.putNumber("delay", delay%5);
+	//	if (Robot.m_oi.ojoy.getRawButtonReleased(2)) { delay++; }
+	//	SmartDashboard.putNumber("delay", delay%5);
 		
 		if (autoint%4 == 0) { SmartDashboard.putString("Auto Position", "Left"); }
 		if (autoint%4 == 1) { SmartDashboard.putString("Auto Position", "Right"); }
@@ -132,7 +132,7 @@ public class Robot extends IterativeRobot {
     	Robot.drivetrain.frontRight.configVoltageMeasurementFilter(32, 10);
     	
     	
-    	/*
+    	
     	init();
     	recorder.setCurrentWritefile(1);
 		recorder.setCurrentReadfile(0);
@@ -140,7 +140,7 @@ public class Robot extends IterativeRobot {
 		Recorder.initReader();
 		recorder.resetReadings();
 		recorder.storeReadings();
-		*/
+		
 		
 		autonomousCommand = chooser.getSelected();
 		
@@ -188,7 +188,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		//while(!recorder.checkTime()) {Timer.delay(0.001);}
-		Timer.delay(delay%5);
+	//	Timer.delay(delay%5);
 		if(recorder.hasNextLine())
 		{
 			System.out.println(recorder.getReading("DriveTrain Back Left"));
@@ -197,8 +197,8 @@ public class Robot extends IterativeRobot {
 			DriveTrain.setSpeed(DriveTrain.frontRight, recorder.getReading("DriveTrain Front Right"));
 			DriveTrain.setSpeed(DriveTrain.backRight, recorder.getReading("DriveTrain Back Right"));
 			Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
-			Manipulation.setSpeed(Manipulation.clawLeftencL, recorder.getReading("Eject Roller Left Motor"));
-			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Roller Right Motor"));
+			Manipulation.setSpeed(Manipulation.clawLeftencL, 0.5*recorder.getReading("Eject Roller Left Motor"));
+			Manipulation.setSpeed(Manipulation.clawRight, 0.5*recorder.getReading("Eject Roller Right Motor"));
 			Timer.delay(0.001);
 		}
 		
@@ -276,25 +276,26 @@ public class Robot extends IterativeRobot {
 		
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		
+		
 		//Left
 		if (autoint%4 == 0)
 		{
 			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/LeftSwitchFromLeft.txt"); }	//Left switch from middle
-			else { path = new String("/home/lvuser/Straight.txt"); }								//Right switch from middle
+			else { path = new String("/home/lvuser/Straight.txt"); }									//Right switch from middle
 		}
 		
 		//Right
 		if (autoint%4 == 1)
 		{
 			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/Straight.txt"); }	//Left switch from right
-			else { path = new String("/home/lvuser/RightSwitchFromRight.txt"); }								//Right switch from right
+			else { path = new String("/home/lvuser/RightSwitchFromRight.txt"); }				//Right switch from right
 		}
 		
 		//Middle
 		if (autoint%4 == 2)
 		{
-			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/LeftSwitchFromMiddle.txt"); }	//Left switch from left
-			else { path = new String("/home/lvuser/RightSwitchFromMiddle.txt"); }										//Right switch from left
+			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/LeftSwitchFromMiddleREDO.txt"); }	//Left switch from left
+			else { path = new String("/home/lvuser/RightSwitchFromMiddle.txt"); }							//Right switch from left
 		}
 		
 		
@@ -313,10 +314,12 @@ public class Robot extends IterativeRobot {
 		 * "/home/lvuser/LeftSwitchFromLeft.txt"		COMPLETED
 		 * "/home/lvuser/RightSwitchFromLeft.txt"		
 		 * "/home/lvuser/LeftSwitchFromMiddle.txt"		COMPLETED
-		 * "/home/lvuser/RightSwitchFromMiddle.txt"		COMPLETED
+		 * "/home/lvuser/RightSwitchFromMiddle.txt"		
 		 * "/home/lvuser/Straight.txt" 					COMPLETED
+		 * "/home/lvuser/RightSwitchFromMiddleREDO.txt"	COMPLETED
+		 * "/home/lvuser/LeftSwitchFromMiddleREDO.txt"	COMPLETED
 		 */
-//		path = new String("/home/lvuser/RightSwitchFromRight.txt"); //Reads from this one
+	//	path = new String("/home/lvuser/LeftSwitchFromMiddleREDO.txt"); //Reads from this one
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
