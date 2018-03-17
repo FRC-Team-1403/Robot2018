@@ -18,6 +18,7 @@ public class mpIntakeCube extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.manip.LED.set(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,6 +34,7 @@ public class mpIntakeCube extends Command {
   //  	{
     		Robot.manip.clawIntake();
         	Robot.manip.groundIntake();
+        	
   //  	}
    }
 

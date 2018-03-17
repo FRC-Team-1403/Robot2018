@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -22,6 +23,7 @@ public class Manipulation extends Subsystem {
 	public static TalonSRX clawRight;
 	public static TalonSRX clawLeftencL;
     public DigitalInput limitSwitch;
+    public DigitalOutput LED;
     public double inLeftSpeede, inRightSpeede, rlRightSpeede, rlLeftSpeede, inLeftSpeedi, inRightSpeedi, rlRightSpeedi, rlLeftSpeedi;
     public static double getRawAxisRightoJoy;
 	public Manipulation()
@@ -30,7 +32,8 @@ public class Manipulation extends Subsystem {
 		intakeRight = new TalonSRX(RobotMap.intakeRight);
 		clawRight = new TalonSRX(RobotMap.clawRight);
 		clawLeftencL = new TalonSRX(RobotMap.clawLeftencL);
-		limitSwitch = new DigitalInput (2);
+		limitSwitch = new DigitalInput (8);
+		LED = new DigitalOutput(9);
 		getRawAxisRightoJoy = 0;
 		
 		inLeftSpeede = .75;

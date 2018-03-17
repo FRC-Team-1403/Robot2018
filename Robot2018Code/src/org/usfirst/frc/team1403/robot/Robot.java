@@ -73,8 +73,24 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 	SmartDashboard.putData("Auto mode", chooser);
+	
+	Robot.drivetrain.backLeftencR.configVoltageCompSaturation(11.0, 10);
+	Robot.drivetrain.backLeftencR.enableVoltageCompensation(true);
+	Robot.drivetrain.backLeftencR.configVoltageMeasurementFilter(32, 10);
+	
+	Robot.drivetrain.backRight.configVoltageCompSaturation(11.0, 10);
+	Robot.drivetrain.backRight.enableVoltageCompensation(true);
+	Robot.drivetrain.backRight.configVoltageMeasurementFilter(32, 10);
+	
+	Robot.drivetrain.frontLeft.configVoltageCompSaturation(11.0, 10);
+	Robot.drivetrain.frontLeft.enableVoltageCompensation(true);
+	Robot.drivetrain.frontLeft.configVoltageMeasurementFilter(32, 10);
+	
+	Robot.drivetrain.frontRight.configVoltageCompSaturation(11.0, 10);
+	Robot.drivetrain.frontRight.enableVoltageCompensation(true);
+	Robot.drivetrain.frontRight.configVoltageMeasurementFilter(32, 10);
 
-	/*
+	
 	init();
 	recorder.setCurrentWritefile(1);
 	recorder.setCurrentReadfile(0);
@@ -82,7 +98,7 @@ public class Robot extends IterativeRobot {
 	Recorder.initReader();
 	recorder.resetReadings();
 	recorder.storeReadings();
-	*/
+	
 		
 	}
 
@@ -115,32 +131,32 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() 
 	{
-		Robot.drivetrain.backLeftencR.configVoltageCompSaturation(12.0, 10);
+	/*	Robot.drivetrain.backLeftencR.configVoltageCompSaturation(11.0, 10);
     	Robot.drivetrain.backLeftencR.enableVoltageCompensation(true);
     	Robot.drivetrain.backLeftencR.configVoltageMeasurementFilter(32, 10);
     	
-    	Robot.drivetrain.backRight.configVoltageCompSaturation(12.0, 10);
+    	Robot.drivetrain.backRight.configVoltageCompSaturation(11.0, 10);
     	Robot.drivetrain.backRight.enableVoltageCompensation(true);
     	Robot.drivetrain.backRight.configVoltageMeasurementFilter(32, 10);
     	
-    	Robot.drivetrain.frontLeft.configVoltageCompSaturation(12.0, 10);
+    	Robot.drivetrain.frontLeft.configVoltageCompSaturation(11.0, 10);
     	Robot.drivetrain.frontLeft.enableVoltageCompensation(true);
     	Robot.drivetrain.frontLeft.configVoltageMeasurementFilter(32, 10);
     	
-    	Robot.drivetrain.frontRight.configVoltageCompSaturation(12.0, 10);
+    	Robot.drivetrain.frontRight.configVoltageCompSaturation(11.0, 10);
     	Robot.drivetrain.frontRight.enableVoltageCompensation(true);
     	Robot.drivetrain.frontRight.configVoltageMeasurementFilter(32, 10);
+    	*/
     	
     	
-    	
-    	init();
+    	/*init();
     	recorder.setCurrentWritefile(1);
 		recorder.setCurrentReadfile(0);
 		Recorder.initWriter();
 		Recorder.initReader();
 		recorder.resetReadings();
 		recorder.storeReadings();
-		
+		*/
 		
 		autonomousCommand = chooser.getSelected();
 		
@@ -197,8 +213,8 @@ public class Robot extends IterativeRobot {
 			DriveTrain.setSpeed(DriveTrain.frontRight, recorder.getReading("DriveTrain Front Right"));
 			DriveTrain.setSpeed(DriveTrain.backRight, recorder.getReading("DriveTrain Back Right"));
 			Elevator.setSpeed(Elevator.elMotor, recorder.getReading("Elevator"));
-			Manipulation.setSpeed(Manipulation.clawLeftencL, 0.5*recorder.getReading("Eject Roller Left Motor"));
-			Manipulation.setSpeed(Manipulation.clawRight, 0.5*recorder.getReading("Eject Roller Right Motor"));
+			Manipulation.setSpeed(Manipulation.clawLeftencL, recorder.getReading("Eject Roller Left Motor"));
+			Manipulation.setSpeed(Manipulation.clawRight, recorder.getReading("Eject Roller Right Motor"));
 			Timer.delay(0.001);
 		}
 		
@@ -225,10 +241,11 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 		
-		Robot.drivetrain.backLeftencR.enableVoltageCompensation(false);
-		Robot.drivetrain.backRight.enableVoltageCompensation(false);
-		Robot.drivetrain.frontLeft.enableVoltageCompensation(false);
-		Robot.drivetrain.frontRight.enableVoltageCompensation(false);
+	//	Robot.drivetrain.backLeftencR.enableVoltageCompensation(false);
+	//	Robot.drivetrain.backRight.enableVoltageCompensation(false);
+	//	Robot.drivetrain.frontLeft.enableVoltageCompensation(false);
+	//	Robot.drivetrain.frontRight.enableVoltageCompensation(false);
+		Robot.manip.LED.set(false);
 		
 	}
 
@@ -245,6 +262,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Intake Limit Switch", Robot.manip.limitSwitch.get());
 		SmartDashboard.putNumber("Encoder Claw Left", Robot.drivetrain.getLeftPosition());
 		SmartDashboard.putNumber("Encoder Drive Right", Robot.drivetrain.getRightPosition());
+		//SmartDasboard.pu
 		
 		if(Recorder.isRecording)
 		{
@@ -263,6 +281,15 @@ public class Robot extends IterativeRobot {
 		else if (Recorder.isStoring()) {
 			recorder.storeWritings();
 		}
+		
+		if(Robot.manip.limitSwitch.get())
+    	{
+    		Robot.manip.LED.set(true);
+    	}
+		
+		else {
+			Robot.manip.LED.set(false);
+		}
 	}
 
 	/**
@@ -274,7 +301,7 @@ public class Robot extends IterativeRobot {
 	
 	public void init() {
 		
-		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		/*String gameData = DriverStation.getInstance().getGameSpecificMessage();
 		
 		
 		//Left
@@ -304,30 +331,34 @@ public class Robot extends IterativeRobot {
 		{
 			path = new String("/home/lvuser/Straight.txt");			//Straight
 		}
-			
+		*/	
 	
 		//File Select Menu
 		/*
 		 * Different commands to call
-		 * "/home/lvuser/RightSwitchFromRight.txt"		COMPLETED
-		 * "/home/lvuser/LeftSwitchFromRight.txt" 		
-		 * "/home/lvuser/LeftSwitchFromLeft.txt"		COMPLETED
-		 * "/home/lvuser/RightSwitchFromLeft.txt"		
 		 * "/home/lvuser/LeftSwitchFromMiddle.txt"		COMPLETED
-		 * "/home/lvuser/RightSwitchFromMiddle.txt"		
-		 * "/home/lvuser/Straight.txt" 					COMPLETED
-		 * "/home/lvuser/RightSwitchFromMiddleREDO.txt"	COMPLETED
-		 * "/home/lvuser/LeftSwitchFromMiddleREDO.txt"	COMPLETED
+		 * "/home/lvuser/RightSwitchFromMiddle.txt"		COMPLETED
+		 * "/home/lvuser/LeftSwitchFromRight.txt"		
+		 * "/home/lvuser/RightSwitchFromRight.txt" 		
+		 * "/home/lvuser/LeftSwitchFromLeft.txt"		COMPLETED
+		 * "/home/lvuser/RightSwitchFromLeft.txt"				
+		 * "/home/lvuser/Straight.txt"
+		 * EXTRAS 					
+		 * "/home/lvuser/LeftSwitchFromMiddleREDO.txt"
+		 * "/home/lvuser/RightSwitchFromMiddleREDO.txt"
+		 * "/home/lvuser/LeftSwitchFromRightElite.txt"
+		 * "/home/lvuser/RightSwitchFromLeftElite.txt"	
+		 * 
 		 */
-	//	path = new String("/home/lvuser/LeftSwitchFromMiddleREDO.txt"); //Reads from this one
+		path = new String("/home/lvuser/RightSwitchFromMiddle.txt"); //Reads from this one
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
-		path = new String("/home/lvuser/RightSwitchFromLeft.txt");
+		path = new String("/home/lvuser/RightSwitchFromRight.txt");
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
 	}
 }
 	
-
+//Autos to record: Center->Left, Center->Right, Left->Left, Left->Right, Right->Left, Right->Right
