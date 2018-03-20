@@ -315,13 +315,13 @@ public class Robot extends IterativeRobot {
 		if (autoint%4 == 1)
 		{
 			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/Straight.txt"); }	//Left switch from right
-			else { path = new String("/home/lvuser/RightSwitchFromRight.txt"); }				//Right switch from right
+			else { path = new String("/home/lvuser/Straight.txt"); }							//Right switch from right
 		}
 		
 		//Middle
 		if (autoint%4 == 2)
 		{
-			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/LeftSwitchFromMiddleREDO.txt"); }	//Left switch from left
+			if(gameData.charAt(0) == 'L') { path = new String("/home/lvuser/LeftSwitchFromMiddle.txt"); }	//Left switch from left
 			else { path = new String("/home/lvuser/RightSwitchFromMiddle.txt"); }							//Right switch from left
 		}
 		
@@ -329,20 +329,20 @@ public class Robot extends IterativeRobot {
 		//Straight
 		if (autoint%4 == 3)
 		{
-			path = new String("/home/lvuser/Straight.txt");			//Straight
+			path = new String("/home/lvuser/Straight.txt");	//Straight
 		}
 		*/	
-	
+		
 		//File Select Menu
 		/*
 		 * Different commands to call
 		 * "/home/lvuser/LeftSwitchFromMiddle.txt"		COMPLETED
 		 * "/home/lvuser/RightSwitchFromMiddle.txt"		COMPLETED
 		 * "/home/lvuser/LeftSwitchFromRight.txt"		
-		 * "/home/lvuser/RightSwitchFromRight.txt" 		
+		 * "/home/lvuser/RightSwitchFromRight.txt" 		COMPLETED
 		 * "/home/lvuser/LeftSwitchFromLeft.txt"		COMPLETED
 		 * "/home/lvuser/RightSwitchFromLeft.txt"				
-		 * "/home/lvuser/Straight.txt"
+		 * "/home/lvuser/Straight.txt"					COMPLETED
 		 * EXTRAS 					
 		 * "/home/lvuser/LeftSwitchFromMiddleREDO.txt"
 		 * "/home/lvuser/RightSwitchFromMiddleREDO.txt"
@@ -350,7 +350,7 @@ public class Robot extends IterativeRobot {
 		 * "/home/lvuser/RightSwitchFromLeftElite.txt"	
 		 * 
 		 */
-		path = new String("/home/lvuser/RightSwitchFromMiddle.txt"); //Reads from this one
+		path = new String("/home/lvuser/Straight.txt"); //Reads from this one
 		recorder.addFileSelect(numpaths, path);
 		SmartDashboard.putString(Integer.toString(numpaths), path);
 		++numpaths;
