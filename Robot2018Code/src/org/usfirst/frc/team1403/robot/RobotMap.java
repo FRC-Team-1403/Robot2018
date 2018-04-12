@@ -29,7 +29,7 @@ public class RobotMap
 	public static int frontLeftMotor = 9;
 	public static int backLeftMotorencR = 5; //encoder
 	public static int frontRightMotor = 3;
-	public static int backRightMotor = 2;
+	public static int backRightMotor = 8;	//switched from 2 to 8
 
 	public static int gyroSensor = 0;
 	
